@@ -3,12 +3,29 @@ grammar JavaBlyat;
 programma: STRING;
 
 
+//Rekenkundige expressies
+PLUS: '+';
+MIN: '-';
+KEER: '*';
+GEDEELD: '/';
+
+//Logische expressies
 EQUAL: '==';
 NOTEQUAL: '!=';
 SMALLERTHAN: '<';
 BIGGERTHAN: '>';
 SMALLERTHANEQUAL: '<=';
 BIGGERTHANEQUAL: '>=';
+OR: '||';
+AND: '&&';
+NOT: '!';
+
+//Overig
+PARENTHESESLEFT: '(';
+PARENTHESESRIGHT: ')';
+RETURN: 'returnblyat';
+SEMICOLON: ';';
+IS: '=';
 
 DATATYPES: ('stringblyat' | 'intblyat' | 'booleanblyat');
 
