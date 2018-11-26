@@ -1,6 +1,6 @@
 grammar JavaBlyat;
 
-programma: statement* EOF;
+programma: function* statement* EOF;
 
 //Statements
 statement: if_statement
@@ -8,7 +8,8 @@ statement: if_statement
          | new_variable_declaration
          | change_variable
          | while_loop
-         | print;
+         | print
+         | call_function;
 
 //IF statement
 if_statement: 'ifblyat' '(' expr=expression ')' statementBlock=statement_block elseif_block* else_block?;
@@ -27,6 +28,16 @@ while_loop: 'whileblyat' '(' expression ')' statement_block;
 print: 'consoleblyat.log(' ID ')' SEMICOLON #printId
      | 'consoleblyat.log(' STRING ')' SEMICOLON #printString
      | 'consoleblyat.log(' calc_expression ')' SEMICOLON #printString;
+
+//Make functions
+function: DATATYPES 'functionblyat' ID PARENTHESESLEFT function_argument? PARENTHESESRIGHT function_statement_block;
+function_argument: (DATATYPES function_argument_types (IS expr=calc_expression)? ',')* DATATYPES function_argument_types (IS expr=calc_expression)?;
+function_argument_types: STRING | INT | BOOLEAN | ID;
+function_statement_block: '{' statement* (RETURN ID SEMICOLON)? '}';
+
+//Call functions
+call_function: ID PARENTHESESLEFT call_function_argument? PARENTHESESRIGHT SEMICOLON;
+call_function_argument: (function_argument_types ',')* function_argument_types;
 
 statement_block: '{' statement* '}' #statementBlock;
 
@@ -69,7 +80,7 @@ RETURN: 'returnblyat';
 SEMICOLON: ';';
 IS: '=';
 
-DATATYPES: ('stringblyat' | 'intblyat' | 'booleanblyat');
+DATATYPES: ('stringblyat' | 'intblyat' | 'booleanblyat' | 'voidblyat');
 
 STRING: '"'(~[\\"])*?'"';
 INT: [0-9]+;
