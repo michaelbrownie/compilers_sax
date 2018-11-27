@@ -29,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TypeChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="374">
+              <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#230#231#0" expanded="true" />
@@ -72,6 +72,15 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JavaBlyat.g4">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="50" column="28" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/Type.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -81,20 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/JavaBlyat.g4">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="35" lean-forward="true" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.JB">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state>
+              <caret column="18" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -167,7 +167,7 @@
     <property name="$PROJECT_DIR$/JavaBlyat.g4::/output-dir" value="gen" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543346994753" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543347661974" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Calculator" />
@@ -383,7 +383,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5150000" />
+    <option name="totallyTimeSpent" value="5345000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -398,7 +398,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18603411" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18603411" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -409,13 +409,13 @@
       <window_info anchor="bottom" id="Messages" weight="0.32936078" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32936078" />
-      <window_info anchor="bottom" id="Tool Output" order="8" />
+      <window_info anchor="bottom" id="Tool Output" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" weight="0.40195015" />
@@ -444,13 +444,7 @@
         <state relative-caret-position="-1454" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Evaluator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Evaluator.java" />
     <entry file="file://$PROJECT_DIR$/src/models/Type.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -460,8 +454,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TypeChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="374">
+          <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#230#231#0" expanded="true" />
@@ -515,8 +509,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.JB">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state>
+          <caret column="18" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -532,8 +526,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JavaBlyat.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="35" lean-forward="true" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+        <state relative-caret-position="391">
+          <caret line="50" column="28" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="28" />
         </state>
       </provider>
     </entry>

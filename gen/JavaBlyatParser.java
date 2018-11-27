@@ -1196,6 +1196,7 @@ public class JavaBlyatParser extends Parser {
 	}
 	public static class CompareExpressionsContext extends ExpressionContext {
 		public ExpressionContext leftExpression;
+		public Token operator;
 		public ExpressionContext rightExpression;
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
@@ -1226,6 +1227,7 @@ public class JavaBlyatParser extends Parser {
 		}
 	}
 	public static class NotExpressionContext extends ExpressionContext {
+		public Token operator;
 		public ExpressionContext rightExpression;
 		public TerminalNode NOT() { return getToken(JavaBlyatParser.NOT, 0); }
 		public ExpressionContext expression() {
@@ -1240,6 +1242,7 @@ public class JavaBlyatParser extends Parser {
 	}
 	public static class EqualExpressionsContext extends ExpressionContext {
 		public ExpressionContext leftExpression;
+		public Token operator;
 		public ExpressionContext rightExpression;
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
@@ -1258,6 +1261,7 @@ public class JavaBlyatParser extends Parser {
 	}
 	public static class OrAndandExpressionsContext extends ExpressionContext {
 		public ExpressionContext leftExpression;
+		public Token operator;
 		public ExpressionContext rightExpression;
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
@@ -1301,7 +1305,7 @@ public class JavaBlyatParser extends Parser {
 				_prevctx = _localctx;
 
 				setState(194);
-				match(NOT);
+				((NotExpressionContext)_localctx).operator = match(NOT);
 				setState(195);
 				((NotExpressionContext)_localctx).rightExpression = expression(2);
 				}
@@ -1342,9 +1346,10 @@ public class JavaBlyatParser extends Parser {
 						setState(199);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
 						setState(200);
+						((EqualExpressionsContext)_localctx).operator = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==EQUAL || _la==NOTEQUAL) ) {
-						_errHandler.recoverInline(this);
+							((EqualExpressionsContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
@@ -1363,9 +1368,10 @@ public class JavaBlyatParser extends Parser {
 						setState(202);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
 						setState(203);
+						((CompareExpressionsContext)_localctx).operator = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SMALLERTHAN) | (1L << BIGGERTHAN) | (1L << SMALLERTHANEQUAL) | (1L << BIGGERTHANEQUAL))) != 0)) ) {
-						_errHandler.recoverInline(this);
+							((CompareExpressionsContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
@@ -1384,9 +1390,10 @@ public class JavaBlyatParser extends Parser {
 						setState(205);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(206);
+						((OrAndandExpressionsContext)_localctx).operator = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==OR || _la==AND) ) {
-						_errHandler.recoverInline(this);
+							((OrAndandExpressionsContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;

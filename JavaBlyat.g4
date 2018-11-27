@@ -41,10 +41,10 @@ call_function_argument: (function_argument_types ',')* function_argument_types;
 
 statement_block: '{' statement* '}' #statementBlock;
 
-expression: leftExpression=expression (EQUAL | NOTEQUAL) rightExpression=expression #equalExpressions
-           | leftExpression=expression (SMALLERTHAN | BIGGERTHAN | SMALLERTHANEQUAL | BIGGERTHANEQUAL) rightExpression=expression #compareExpressions
-           | leftExpression=expression (OR | AND) rightExpression=expression #orAndandExpressions
-           | NOT rightExpression=expression #notExpression
+expression: leftExpression=expression operator=(EQUAL | NOTEQUAL) rightExpression=expression #equalExpressions
+           | leftExpression=expression operator=(SMALLERTHAN | BIGGERTHAN | SMALLERTHANEQUAL | BIGGERTHANEQUAL) rightExpression=expression #compareExpressions
+           | leftExpression=expression operator=(OR | AND) rightExpression=expression #orAndandExpressions
+           | operator=NOT rightExpression=expression #notExpression
            | literal #literalExpr;
 
 calc_expression: leftExpression=calc_expression operator=(PLUS | MIN | KEER | GEDEELD) rightExpression=calc_expression #calcValueExpression
