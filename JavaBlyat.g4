@@ -1,6 +1,6 @@
 grammar JavaBlyat;
 
-programma: function* statement* function*;
+programma: function* statement* function* EOF;
 
 //Statements
 statement: if_statement
