@@ -17,7 +17,7 @@ public class JavaBlyatLexer extends Lexer {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		PLUS=10, MIN=11, KEER=12, GEDEELD=13, EQUAL=14, NOTEQUAL=15, SMALLERTHAN=16, 
+		PLUS=10, MINUS=11, TIMES=12, DIVIDE=13, EQUAL=14, NOTEQUAL=15, SMALLERTHAN=16, 
 		BIGGERTHAN=17, SMALLERTHANEQUAL=18, BIGGERTHANEQUAL=19, OR=20, AND=21, 
 		NOT=22, PARENTHESESLEFT=23, PARENTHESESRIGHT=24, RETURN=25, SEMICOLON=26, 
 		IS=27, DATATYPES=28, STRING=29, INT=30, BOOLEAN=31, ID=32, WS=33;
@@ -31,7 +31,7 @@ public class JavaBlyatLexer extends Lexer {
 
 	public static final String[] ruleNames = {
 		"T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", "T__7", "T__8", 
-		"PLUS", "MIN", "KEER", "GEDEELD", "EQUAL", "NOTEQUAL", "SMALLERTHAN", 
+		"PLUS", "MINUS", "TIMES", "DIVIDE", "EQUAL", "NOTEQUAL", "SMALLERTHAN", 
 		"BIGGERTHAN", "SMALLERTHANEQUAL", "BIGGERTHANEQUAL", "OR", "AND", "NOT", 
 		"PARENTHESESLEFT", "PARENTHESESRIGHT", "RETURN", "SEMICOLON", "IS", "DATATYPES", 
 		"STRING", "INT", "BOOLEAN", "ID", "WS"
@@ -44,8 +44,8 @@ public class JavaBlyatLexer extends Lexer {
 		"'returnblyat'", "';'", "'='"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, "PLUS", "MIN", 
-		"KEER", "GEDEELD", "EQUAL", "NOTEQUAL", "SMALLERTHAN", "BIGGERTHAN", "SMALLERTHANEQUAL", 
+		null, null, null, null, null, null, null, null, null, null, "PLUS", "MINUS", 
+		"TIMES", "DIVIDE", "EQUAL", "NOTEQUAL", "SMALLERTHAN", "BIGGERTHAN", "SMALLERTHANEQUAL", 
 		"BIGGERTHANEQUAL", "OR", "AND", "NOT", "PARENTHESESLEFT", "PARENTHESESRIGHT", 
 		"RETURN", "SEMICOLON", "IS", "DATATYPES", "STRING", "INT", "BOOLEAN", 
 		"ID", "WS"

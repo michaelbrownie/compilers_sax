@@ -17,7 +17,7 @@ public class JavaBlyatParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		PLUS=10, MIN=11, KEER=12, GEDEELD=13, EQUAL=14, NOTEQUAL=15, SMALLERTHAN=16, 
+		PLUS=10, MINUS=11, TIMES=12, DIVIDE=13, EQUAL=14, NOTEQUAL=15, SMALLERTHAN=16, 
 		BIGGERTHAN=17, SMALLERTHANEQUAL=18, BIGGERTHANEQUAL=19, OR=20, AND=21, 
 		NOT=22, PARENTHESESLEFT=23, PARENTHESESRIGHT=24, RETURN=25, SEMICOLON=26, 
 		IS=27, DATATYPES=28, STRING=29, INT=30, BOOLEAN=31, ID=32, WS=33;
@@ -43,8 +43,8 @@ public class JavaBlyatParser extends Parser {
 		"'returnblyat'", "';'", "'='"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, "PLUS", "MIN", 
-		"KEER", "GEDEELD", "EQUAL", "NOTEQUAL", "SMALLERTHAN", "BIGGERTHAN", "SMALLERTHANEQUAL", 
+		null, null, null, null, null, null, null, null, null, null, "PLUS", "MINUS", 
+		"TIMES", "DIVIDE", "EQUAL", "NOTEQUAL", "SMALLERTHAN", "BIGGERTHAN", "SMALLERTHANEQUAL", 
 		"BIGGERTHANEQUAL", "OR", "AND", "NOT", "PARENTHESESLEFT", "PARENTHESESRIGHT", 
 		"RETURN", "SEMICOLON", "IS", "DATATYPES", "STRING", "INT", "BOOLEAN", 
 		"ID", "WS"
@@ -1457,9 +1457,9 @@ public class JavaBlyatParser extends Parser {
 			return getRuleContext(Calc_expressionContext.class,i);
 		}
 		public TerminalNode PLUS() { return getToken(JavaBlyatParser.PLUS, 0); }
-		public TerminalNode MIN() { return getToken(JavaBlyatParser.MIN, 0); }
-		public TerminalNode KEER() { return getToken(JavaBlyatParser.KEER, 0); }
-		public TerminalNode GEDEELD() { return getToken(JavaBlyatParser.GEDEELD, 0); }
+		public TerminalNode MINUS() { return getToken(JavaBlyatParser.MINUS, 0); }
+		public TerminalNode TIMES() { return getToken(JavaBlyatParser.TIMES, 0); }
+		public TerminalNode DIVIDE() { return getToken(JavaBlyatParser.DIVIDE, 0); }
 		public CalcValueExpressionContext(Calc_expressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -1510,7 +1510,7 @@ public class JavaBlyatParser extends Parser {
 					setState(217);
 					((CalcValueExpressionContext)_localctx).operator = _input.LT(1);
 					_la = _input.LA(1);
-					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MIN) | (1L << KEER) | (1L << GEDEELD))) != 0)) ) {
+					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << TIMES) | (1L << DIVIDE))) != 0)) ) {
 						((CalcValueExpressionContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
 					}
 					else {

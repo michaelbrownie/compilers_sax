@@ -47,7 +47,7 @@ expression: leftExpression=expression operator=(EQUAL | NOTEQUAL) rightExpressio
            | operator=NOT rightExpression=expression #notExpression
            | literal #literalExpr;
 
-calc_expression: leftExpression=calc_expression operator=(PLUS | MIN | KEER | GEDEELD) rightExpression=calc_expression #calcValueExpression
+calc_expression: leftExpression=calc_expression operator=(PLUS | MINUS | TIMES | DIVIDE) rightExpression=calc_expression #calcValueExpression
   | literal #literalValueExp;
 
 literal: PARENTHESESLEFT (expression | calc_expression) PARENTHESESRIGHT #literalExpression
@@ -58,9 +58,9 @@ literal: PARENTHESESLEFT (expression | calc_expression) PARENTHESESRIGHT #litera
 
 //Rekenkundige expressies
 PLUS: '+';
-MIN: '-';
-KEER: '*';
-GEDEELD: '/';
+MINUS: '-';
+TIMES: '*';
+DIVIDE: '/';
 
 //Logische expressies
 EQUAL: '==';
