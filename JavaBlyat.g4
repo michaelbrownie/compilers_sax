@@ -1,6 +1,6 @@
 grammar JavaBlyat;
 
-programma: function* statement* EOF;
+programma: function* statement* function*;
 
 //Statements
 statement: if_statement
@@ -25,13 +25,13 @@ change_variable: id=ID IS expr=calc_expression SEMICOLON;
 while_loop: 'whileblyat' '(' expression ')' statement_block;
 
 //Print
-print: 'consoleblyat.log(' ID ')' SEMICOLON #printId
-     | 'consoleblyat.log(' STRING ')' SEMICOLON #printString
-     | 'consoleblyat.log(' calc_expression ')' SEMICOLON #printString;
+print: 'cyka.blyat(' ID ')' SEMICOLON #printId
+     | 'cyka.blyat(' STRING ')' SEMICOLON #printString
+     | 'cyka.blyat(' calc_expression ')' SEMICOLON #printCalcExpression;
 
 //Make functions
 function: DATATYPES 'functionblyat' ID PARENTHESESLEFT function_argument? PARENTHESESRIGHT function_statement_block;
-function_argument: (DATATYPES function_argument_types (IS expr=calc_expression)? ',')* DATATYPES function_argument_types (IS expr=calc_expression)?;
+function_argument: (DATATYPES function_argument_types ',')* DATATYPES function_argument_types;
 function_argument_types: STRING | INT | BOOLEAN | ID;
 function_statement_block: '{' statement* (RETURN ID SEMICOLON)? '}';
 
