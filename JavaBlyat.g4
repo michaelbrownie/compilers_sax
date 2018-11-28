@@ -1,6 +1,6 @@
 grammar JavaBlyat;
 
-programma: function* statement* EOF;
+programma: function* statement* function* EOF;
 
 //Statements
 statement: if_statement
@@ -25,13 +25,13 @@ change_variable: id=ID IS expr=calc_expression SEMICOLON;
 while_loop: 'whileblyat' '(' expression ')' statement_block;
 
 //Print
-print: 'consoleblyat.log(' ID ')' SEMICOLON #printId
-     | 'consoleblyat.log(' STRING ')' SEMICOLON #printString
-     | 'consoleblyat.log(' calc_expression ')' SEMICOLON #printString;
+print: 'cyka.blyat(' ID ')' SEMICOLON #printId
+     | 'cyka.blyat(' STRING ')' SEMICOLON #printString
+     | 'cyka.blyat(' calc_expression ')' SEMICOLON #printCalcExpression;
 
 //Make functions
 function: DATATYPES 'functionblyat' ID PARENTHESESLEFT function_argument? PARENTHESESRIGHT function_statement_block;
-function_argument: (DATATYPES function_argument_types (IS expr=calc_expression)? ',')* DATATYPES function_argument_types (IS expr=calc_expression)?;
+function_argument: (DATATYPES function_argument_types ',')* DATATYPES function_argument_types;
 function_argument_types: STRING | INT | BOOLEAN | ID;
 function_statement_block: '{' statement* (RETURN ID SEMICOLON)? '}';
 
@@ -41,13 +41,13 @@ call_function_argument: (function_argument_types ',')* function_argument_types;
 
 statement_block: '{' statement* '}' #statementBlock;
 
-expression: leftExpression=expression (EQUAL | NOTEQUAL) rightExpression=expression #equalExpressions
-           | leftExpression=expression (SMALLERTHAN | BIGGERTHAN | SMALLERTHANEQUAL | BIGGERTHANEQUAL) rightExpression=expression #compareExpressions
-           | leftExpression=expression (OR | AND) rightExpression=expression #orAndandExpressions
-           | NOT rightExpression=expression #notExpression
+expression: leftExpression=expression operator=(EQUAL | NOTEQUAL) rightExpression=expression #equalExpressions
+           | leftExpression=expression operator=(SMALLERTHAN | BIGGERTHAN | SMALLERTHANEQUAL | BIGGERTHANEQUAL) rightExpression=expression #compareExpressions
+           | leftExpression=expression operator=(OR | AND) rightExpression=expression #orAndandExpressions
+           | operator=NOT rightExpression=expression #notExpression
            | literal #literalExpr;
 
-calc_expression: leftExpression=calc_expression operator=(PLUS | MIN | KEER | GEDEELD) rightExpression=calc_expression #calcValueExpression
+calc_expression: leftExpression=calc_expression operator=(PLUS | MINUS | TIMES | DIVIDE) rightExpression=calc_expression #calcValueExpression
   | literal #literalValueExp;
 
 literal: PARENTHESESLEFT (expression | calc_expression) PARENTHESESRIGHT #literalExpression
@@ -58,9 +58,9 @@ literal: PARENTHESESLEFT (expression | calc_expression) PARENTHESESRIGHT #litera
 
 //Rekenkundige expressies
 PLUS: '+';
-MIN: '-';
-KEER: '*';
-GEDEELD: '/';
+MINUS: '-';
+TIMES: '*';
+DIVIDE: '/';
 
 //Logische expressies
 EQUAL: '==';
