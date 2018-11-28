@@ -1,4 +1,4 @@
-// Generated from C:/Users/KYLIAN/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
+// Generated from C:/Users/micha/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -10,11 +10,11 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface JavaBlyatVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link JavaBlyatParser#programma}.
+	 * Visit a parse tree produced by {@link JavaBlyatParser#parse}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgramma(JavaBlyatParser.ProgrammaContext ctx);
+	T visitParse(JavaBlyatParser.ParseContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JavaBlyatParser#statement}.
 	 * @param ctx the parse tree

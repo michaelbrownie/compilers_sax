@@ -1,4 +1,4 @@
-// Generated from C:/Users/KYLIAN/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
+// Generated from C:/Users/micha/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -16,7 +16,7 @@ public class JavaBlyatBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgramma(JavaBlyatParser.ProgrammaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitParse(JavaBlyatParser.ParseContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

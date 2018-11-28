@@ -1,4 +1,4 @@
-// Generated from C:/Users/KYLIAN/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
+// Generated from C:/Users/micha/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -22,16 +22,16 @@ public class JavaBlyatParser extends Parser {
 		NOT=22, PARENTHESESLEFT=23, PARENTHESESRIGHT=24, RETURN=25, SEMICOLON=26, 
 		IS=27, DATATYPES=28, STRING=29, INT=30, BOOLEAN=31, ID=32, WS=33;
 	public static final int
-		RULE_programma = 0, RULE_statement = 1, RULE_if_statement = 2, RULE_elseif_block = 3, 
+		RULE_parse = 0, RULE_statement = 1, RULE_if_statement = 2, RULE_elseif_block = 3, 
 		RULE_else_block = 4, RULE_new_variable = 5, RULE_new_variable_declaration = 6, 
 		RULE_change_variable = 7, RULE_while_loop = 8, RULE_print = 9, RULE_function = 10, 
 		RULE_function_argument = 11, RULE_function_argument_types = 12, RULE_function_statement_block = 13, 
 		RULE_call_function = 14, RULE_call_function_argument = 15, RULE_statement_block = 16, 
 		RULE_expression = 17, RULE_calc_expression = 18, RULE_literal = 19;
 	public static final String[] ruleNames = {
-		"programma", "statement", "if_statement", "elseif_block", "else_block", 
-		"new_variable", "new_variable_declaration", "change_variable", "while_loop", 
-		"print", "function", "function_argument", "function_argument_types", "function_statement_block", 
+		"parse", "statement", "if_statement", "elseif_block", "else_block", "new_variable", 
+		"new_variable_declaration", "change_variable", "while_loop", "print", 
+		"function", "function_argument", "function_argument_types", "function_statement_block", 
 		"call_function", "call_function_argument", "statement_block", "expression", 
 		"calc_expression", "literal"
 	};
@@ -98,7 +98,7 @@ public class JavaBlyatParser extends Parser {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
-	public static class ProgrammaContext extends ParserRuleContext {
+	public static class ParseContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(JavaBlyatParser.EOF, 0); }
 		public List<FunctionContext> function() {
 			return getRuleContexts(FunctionContext.class);
@@ -112,20 +112,20 @@ public class JavaBlyatParser extends Parser {
 		public StatementContext statement(int i) {
 			return getRuleContext(StatementContext.class,i);
 		}
-		public ProgrammaContext(ParserRuleContext parent, int invokingState) {
+		public ParseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_programma; }
+		@Override public int getRuleIndex() { return RULE_parse; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitProgramma(this);
+			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitParse(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ProgrammaContext programma() throws RecognitionException {
-		ProgrammaContext _localctx = new ProgrammaContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_programma);
+	public final ParseContext parse() throws RecognitionException {
+		ParseContext _localctx = new ParseContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_parse);
 		int _la;
 		try {
 			int _alt;
