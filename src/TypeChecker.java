@@ -1,5 +1,4 @@
 import models.Type;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
 
 public class TypeChecker extends JavaBlyatBaseVisitor {
@@ -8,10 +7,6 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
 
     }
 
-    @Override
-    public Object visit(ParseTree tree) {
-        return super.visit(tree);
-    }
 
     @Override
     public Object visitChildren(RuleNode node) {
@@ -45,15 +40,19 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitNew_variable(JavaBlyatParser.New_variableContext ctx) {
-
+        Type type = Type.getType(ctx.DATATYPES().getText());
+        if (type == Type.INVALID || visit(ctx.calc_expression()) != type)  {
+            throw new RuntimeException("Variable " + ctx.ID().getText() + " has a incorrect type");
+        }
         return super.visitNew_variable(ctx);
     }
 
     @Override
     public Object visitNew_variable_declaration(JavaBlyatParser.New_variable_declarationContext ctx) {
         Type type = Type.getType(ctx.DATATYPES().getText());
-        if (type == Type.INVALID)
-            System.out.println("Rekt noob");
+        if (type == Type.INVALID) {
+            throw new RuntimeException("Variable " + ctx.ID().getText() + " has a incorrect type");
+        }
         return super.visitNew_variable_declaration(ctx);
     }
 
@@ -159,17 +158,17 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitLiteralString(JavaBlyatParser.LiteralStringContext ctx) {
-        return super.visitLiteralString(ctx);
+        return Type.STRING;
     }
 
     @Override
     public Object visitLiteralInt(JavaBlyatParser.LiteralIntContext ctx) {
-        return super.visitLiteralInt(ctx);
+        return Type.INT;
     }
 
     @Override
     public Object visitLiteralBoolean(JavaBlyatParser.LiteralBooleanContext ctx) {
-        return super.visitLiteralBoolean(ctx);
+        return Type.BOOL;
     }
 
     @Override
