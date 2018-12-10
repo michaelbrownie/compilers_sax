@@ -22,7 +22,8 @@ public class JavaBlyat {
         typeChecker.visit(tree);
 
         //ScopeChecker
-
+        ScopeChecker scopeChecker = new ScopeChecker();
+        scopeChecker.visit(tree);
     }
 
 

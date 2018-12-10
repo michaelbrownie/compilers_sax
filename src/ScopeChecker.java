@@ -1,16 +1,24 @@
+import models.Scope;
+import models.Symbol;
 import models.Type;
-import org.antlr.v4.runtime.tree.RuleNode;
+import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
-public class TypeChecker extends JavaBlyatBaseVisitor {
-
-    public TypeChecker() {
-
-    }
+public class ScopeChecker extends JavaBlyatBaseVisitor {
 
 
-    @Override
-    public Object visitChildren(RuleNode node) {
-        return super.visitChildren(node);
+    private ParseTreeProperty scopeTree;
+    private ParseTreeProperty variableTree;
+
+    private Scope scope;
+
+    private int scope_count_method = 0;
+
+
+    public ScopeChecker() {
+        this.scopeTree = new ParseTreeProperty();
+        this.variableTree = new ParseTreeProperty();
+
+        this.scope = new Scope(null, "method_" + scope_count_method);
     }
 
     @Override
@@ -40,22 +48,29 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitNew_variable(JavaBlyatParser.New_variableContext ctx) {
-        Type type = Type.getType(ctx.DATATYPES().getText());
-        if (type == Type.INVALID)  {
-            throw new RuntimeException("Variable " + ctx.ID().getText() + " has a incorrect type");
-        } else if(visit(ctx.calc_expression()) != type) {
-            throw new RuntimeException("Variable " + ctx.ID().getText() + " has a incorrect value");
+        Symbol symbol = new Symbol(ctx.ID().getText(), Type.getType(ctx.DATATYPES().getText()));
+        this.scopeTree.put(ctx, scope);
+        this.scope.increaseStack();
+        if(scope.addVariableToScope(symbol)){
+            this.variableTree.put(ctx,symbol);
+            this.scope.setPosOnSymbol(symbol);
+            return super.visitNew_variable(ctx);
+        } else {
+            throw new RuntimeException("Variable " + ctx.ID().getText() + " is already assigned!");
         }
-        return super.visitNew_variable(ctx);
     }
 
     @Override
     public Object visitNew_variable_declaration(JavaBlyatParser.New_variable_declarationContext ctx) {
-        Type type = Type.getType(ctx.DATATYPES().getText());
-        if (type == Type.INVALID) {
-            throw new RuntimeException("Variable " + ctx.ID().getText() + " has a incorrect type");
+        Symbol symbol = new Symbol(ctx.ID().getText(), Type.getType(ctx.DATATYPES().getText()));
+        this.scopeTree.put(ctx, scope);
+        if(scope.addVariableToScope(symbol)){
+            this.variableTree.put(ctx,symbol);
+            this.scope.setPosOnSymbol(symbol);
+            return super.visitNew_variable_declaration(ctx);
+        } else {
+            throw new RuntimeException("Variable " + ctx.ID().getText() + " is already assigned!");
         }
-        return super.visitNew_variable_declaration(ctx);
     }
 
     @Override
@@ -160,17 +175,17 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitLiteralString(JavaBlyatParser.LiteralStringContext ctx) {
-        return Type.STRING;
+        return super.visitLiteralString(ctx);
     }
 
     @Override
     public Object visitLiteralInt(JavaBlyatParser.LiteralIntContext ctx) {
-        return Type.INT;
+        return super.visitLiteralInt(ctx);
     }
 
     @Override
     public Object visitLiteralBoolean(JavaBlyatParser.LiteralBooleanContext ctx) {
-        return Type.BOOL;
+        return super.visitLiteralBoolean(ctx);
     }
 
     @Override
