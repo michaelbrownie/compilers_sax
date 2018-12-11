@@ -11,6 +11,14 @@ public class Scope {
     private HashMap<String, Symbol> variableMap;
     private ArrayList<Scope> childList;
 
+    public Scope(String title){
+        this.title = title;
+        this.pos = 0;
+        this.stackSize = 0;
+        this.variableMap = new HashMap<>();
+        this.childList = new ArrayList<>();
+    }
+
     public Scope(Scope parent, String title) {
         this.parent = parent;
         this.title = title;

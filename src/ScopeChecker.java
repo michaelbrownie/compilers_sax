@@ -19,7 +19,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         this.scopeTree = new ParseTreeProperty();
         this.variableTree = new ParseTreeProperty();
 
-        this.scope = new Scope(null, "method_" + scope_count_method);
+        this.scope = new Scope("method_" + scope_count_method);
     }
 
     @Override
