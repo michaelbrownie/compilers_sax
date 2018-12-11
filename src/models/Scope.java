@@ -1,19 +1,21 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 public class Scope {
-    private String name;
+    private String title;
     private int stackSize;
     private int pos;
     private Scope parent;
-    private LinkedHashMap<String, Symbol> variableMap;
+    private HashMap<String, Symbol> variableMap;
+    private HashMap<String, FunctionScope> functionMap;
+
     private ArrayList<Scope> childList;
 
-    public Scope(Scope parent, String name) {
+    public Scope(Scope parent, String title) {
         this.parent = parent;
-        this.name = name;
+        this.title = title;
         if(parent == null) {
             this.pos = 0;
             this.stackSize = 0;
@@ -21,20 +23,22 @@ public class Scope {
             this.pos = parent.pos;
             this.stackSize = parent.stackSize;
         }
-        this.variableMap = new LinkedHashMap<>();
+        this.variableMap = new HashMap<>();
+        this.functionMap = new HashMap<>();
         this.childList = new ArrayList<>();
     }
 
-    public Scope(Scope parent, String name, int stackSize) {
+    public Scope(Scope parent, String title, int stackSize) {
         this.parent = parent;
-        this.name = name;
+        this.title = title;
         if(parent == null) {
             this.pos = 0;
         } else {
             this.pos = parent.pos;
         }
         this.stackSize = stackSize;
-        this.variableMap = new LinkedHashMap<>();
+        this.variableMap = new HashMap<>();
+        this.functionMap = new HashMap<>();
         this.childList = new ArrayList<>();
     }
 
@@ -47,7 +51,7 @@ public class Scope {
     }
 
     public boolean addVariableToScope(Symbol variable){
-        Symbol symbol = this.checkVariableByName(variable.getName());
+        Symbol symbol = this.searchVariable(variable.getName());
         if(symbol == null){
             this.variableMap.put(variable.getName(), variable);
             return true;
@@ -55,17 +59,42 @@ public class Scope {
         return false;
     }
 
-    public Symbol checkVariableByName(String name){
+    public boolean addFunctionToScope(Function function){
+        FunctionScope fs = this.searchFunction(function.getTitle());
+        if(fs == null){
+            FunctionScope functionScope = new FunctionScope(this, function.getTitle(), function);
+            this.functionMap.put(function.getTitle(), functionScope);
+            this.childList.add(functionScope);
+            return true;
+        }
+        return false;
+    }
+
+    public Symbol searchVariable(String title){
         if(parent != null){
-            if(this.variableMap.get(name) != null){
-                return this.variableMap.get(name);
+            if(this.variableMap.get(title) != null){
+                return this.variableMap.get(title);
             } else {
-                return this.parent.checkVariableByName(name);
+                return this.parent.searchVariable(title);
             }
         } else {
-            return this.variableMap.get(name);
+            return this.variableMap.get(title);
         }
     }
+
+    public FunctionScope searchFunction(String title){
+        FunctionScope fs = this.functionMap.get(title);
+        if(this.parent != null){
+            if(fs != null){
+                return fs;
+            } else {
+                return this.parent.searchFunction(title);
+            }
+        } else {
+            return fs;
+        }
+    }
+
 
     public void increaseStack(){
         this.stackSize++;

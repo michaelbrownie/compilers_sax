@@ -1,3 +1,4 @@
+import models.Function;
 import models.Scope;
 import models.Symbol;
 import models.Type;
@@ -49,15 +50,14 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitNew_variable(JavaBlyatParser.New_variableContext ctx) {
         Symbol symbol = new Symbol(ctx.ID().getText(), Type.getType(ctx.DATATYPES().getText()));
-        this.scopeTree.put(ctx, scope);
+        this.scopeTree.put(ctx, scope); //Vragen
         this.scope.increaseStack();
         if(scope.addVariableToScope(symbol)){
             this.variableTree.put(ctx,symbol);
-            this.scope.setPosOnSymbol(symbol);
+            this.scope.setPosOnSymbol(symbol); //Vragen
             return super.visitNew_variable(ctx);
-        } else {
-            throw new RuntimeException("Variable " + ctx.ID().getText() + " is already assigned!");
         }
+        throw new RuntimeException("Variable " + ctx.ID().getText() + " is already assigned!");
     }
 
     @Override
@@ -68,9 +68,8 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
             this.variableTree.put(ctx,symbol);
             this.scope.setPosOnSymbol(symbol);
             return super.visitNew_variable_declaration(ctx);
-        } else {
-            throw new RuntimeException("Variable " + ctx.ID().getText() + " is already assigned!");
         }
+        throw new RuntimeException("Variable " + ctx.ID().getText() + " is already assigned!");
     }
 
     @Override
@@ -100,7 +99,19 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitFunction(JavaBlyatParser.FunctionContext ctx) {
-        return super.visitFunction(ctx);
+        this.scopeTree.put(ctx, scope);
+        //Kijken als er niet al een functie bestaat met die naam
+        if(this.scope.searchFunction(ctx.ID().getText()) == null){
+            Function function = new Function(ctx.ID().getText(), Type.getType(ctx.DATATYPES().getText()));
+            if(this.scope.addFunctionToScope(function)){
+
+            } else {
+
+            }
+            return super.visitFunction(ctx);
+        }
+        throw new RuntimeException("Duplicate name Function:" + ctx.ID().getText());
+        //
     }
 
     @Override
