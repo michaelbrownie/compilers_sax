@@ -9,7 +9,6 @@ public class Scope {
     private int pos;
     private Scope parent;
     private HashMap<String, Symbol> variableMap;
-
     private ArrayList<Scope> childList;
 
     public Scope(Scope parent, String title) {
@@ -84,5 +83,7 @@ public class Scope {
         symbol.setPos(pos++);
     }
 
-
+    public Scope getParent() {
+        return parent;
+    }
 }

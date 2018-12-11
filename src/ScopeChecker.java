@@ -12,6 +12,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     private Scope scope;
 
     private int scope_count_method = 0;
+    private int count_if_blocks_name = 0;
 
 
     public ScopeChecker() {
@@ -33,11 +34,30 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitIf_statement(JavaBlyatParser.If_statementContext ctx) {
+        this.count_if_blocks_name++;
+        Scope scope = this.scope.createChildScope("if_" + this.count_if_blocks_name);
+        this.scope = scope;
+        this.scope.getParent().addChild(scope);
+        this.scopeTree.put(ctx, this.scope);
+        if(visit(ctx.expression()) != Type.BOOL) {
+            throw new RuntimeException("The ifblyat statement on rule: " + ctx.getStart().getLine() + " is not a equation.");
+        }
+        for (int i = 0; i < ctx.elseif_block().size(); i++) {
+            if(visit(ctx.elseif_block(i)) != Type.BOOL){
+                throw new RuntimeException("One elseifblyat statement in a ifblyat statement on rule: " + ctx.getStart().getLine() + " is not a equation.");
+            }
+        }
+        this.scope = this.scope.closeChildScope();
         return super.visitIf_statement(ctx);
     }
 
     @Override
     public Object visitElseif_block(JavaBlyatParser.Elseif_blockContext ctx) {
+        scopeTree.put(ctx, this.scope);
+        if(visit(ctx.expression()) == Type.BOOL){
+            visit(ctx.statement_block());
+            return Type.BOOL;
+        }
         return super.visitElseif_block(ctx);
     }
 
@@ -143,17 +163,17 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitLiteralString(JavaBlyatParser.LiteralStringContext ctx) {
-        return super.visitLiteralString(ctx);
+        return Type.STRING;
     }
 
     @Override
     public Object visitLiteralInt(JavaBlyatParser.LiteralIntContext ctx) {
-        return super.visitLiteralInt(ctx);
+        return Type.INT;
     }
 
     @Override
     public Object visitLiteralBoolean(JavaBlyatParser.LiteralBooleanContext ctx) {
-        return super.visitLiteralBoolean(ctx);
+        return Type.BOOL;
     }
 
     @Override
