@@ -1,9 +1,9 @@
-stringblyat henk = "henk";
-
 ifblyat(trueblyat){
-stringblyat henk = "henk";
+    stringblyat henk = "henk";
 } elseifblyat(trueblyat) {
 
 } elseifblyat(trueblyat) {
 
 }
+
+stringblyat henk = "henk";

@@ -37,7 +37,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         this.count_if_blocks_name++;
         Scope scope = this.scope.createChildScope("if_" + this.count_if_blocks_name);
         this.scope = scope;
-        this.scope.getParent().addChild(scope);
+        this.scope.getParent().addChild(this.scope);
         this.scopeTree.put(ctx, this.scope);
         if(visit(ctx.expression()) != Type.BOOL) {
             throw new RuntimeException("The ifblyat statement on rule: " + ctx.getStart().getLine() + " is not a equation.");
@@ -47,8 +47,12 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
                 throw new RuntimeException("One elseifblyat statement in a ifblyat statement on rule: " + ctx.getStart().getLine() + " is not a equation.");
             }
         }
+        if(ctx.statement_block() != null){
+            visit(ctx.statement_block());
+        }
+
         this.scope = this.scope.closeChildScope();
-        return super.visitIf_statement(ctx);
+        return Type.BOOL;
     }
 
     @Override
