@@ -1,4 +1,4 @@
-// Generated from C:/Users/micha/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
+// Generated from C:/Users/KYLIAN/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -16,35 +16,31 @@ public class JavaBlyatParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		PLUS=10, MINUS=11, TIMES=12, DIVIDE=13, EQUAL=14, NOTEQUAL=15, SMALLERTHAN=16, 
-		BIGGERTHAN=17, SMALLERTHANEQUAL=18, BIGGERTHANEQUAL=19, OR=20, AND=21, 
-		NOT=22, PARENTHESESLEFT=23, PARENTHESESRIGHT=24, RETURN=25, SEMICOLON=26, 
-		IS=27, DATATYPES=28, STRING=29, INT=30, BOOLEAN=31, ID=32, WS=33;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, PLUS=8, MINUS=9, 
+		TIMES=10, DIVIDE=11, EQUAL=12, NOTEQUAL=13, SMALLERTHAN=14, BIGGERTHAN=15, 
+		SMALLERTHANEQUAL=16, BIGGERTHANEQUAL=17, OR=18, AND=19, NOT=20, PARENTHESESLEFT=21, 
+		PARENTHESESRIGHT=22, RETURN=23, SEMICOLON=24, IS=25, DATATYPES=26, STRING=27, 
+		INT=28, BOOLEAN=29, ID=30, WS=31;
 	public static final int
-		RULE_parse = 0, RULE_statement = 1, RULE_if_statement = 2, RULE_elseif_block = 3, 
+		RULE_program = 0, RULE_statement = 1, RULE_if_statement = 2, RULE_elseif_block = 3, 
 		RULE_else_block = 4, RULE_new_variable = 5, RULE_new_variable_declaration = 6, 
-		RULE_change_variable = 7, RULE_while_loop = 8, RULE_print = 9, RULE_function = 10, 
-		RULE_function_argument = 11, RULE_function_argument_types = 12, RULE_function_statement_block = 13, 
-		RULE_call_function = 14, RULE_call_function_argument = 15, RULE_statement_block = 16, 
-		RULE_expression = 17, RULE_calc_expression = 18, RULE_literal = 19;
+		RULE_change_variable = 7, RULE_while_loop = 8, RULE_print = 9, RULE_statement_block = 10, 
+		RULE_expression = 11, RULE_calc_expression = 12, RULE_literal = 13;
 	public static final String[] ruleNames = {
-		"parse", "statement", "if_statement", "elseif_block", "else_block", "new_variable", 
-		"new_variable_declaration", "change_variable", "while_loop", "print", 
-		"function", "function_argument", "function_argument_types", "function_statement_block", 
-		"call_function", "call_function_argument", "statement_block", "expression", 
-		"calc_expression", "literal"
+		"program", "statement", "if_statement", "elseif_block", "else_block", 
+		"new_variable", "new_variable_declaration", "change_variable", "while_loop", 
+		"print", "statement_block", "expression", "calc_expression", "literal"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'ifblyat'", "'elseifblyat'", "'elseblyat'", "'whileblyat'", "'cyka.blyat('", 
-		"'functionblyat'", "','", "'{'", "'}'", "'+'", "'-'", "'*'", "'/'", "'=='", 
-		"'!='", "'<'", "'>'", "'<='", "'>='", "'||'", "'&&'", "'!'", "'('", "')'", 
-		"'returnblyat'", "';'", "'='"
+		"'{'", "'}'", "'+'", "'-'", "'*'", "'/'", "'=='", "'!='", "'<'", "'>'", 
+		"'<='", "'>='", "'||'", "'&&'", "'!'", "'('", "')'", "'returnblyat'", 
+		"';'", "'='"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, "PLUS", "MINUS", 
-		"TIMES", "DIVIDE", "EQUAL", "NOTEQUAL", "SMALLERTHAN", "BIGGERTHAN", "SMALLERTHANEQUAL", 
+		null, null, null, null, null, null, null, null, "PLUS", "MINUS", "TIMES", 
+		"DIVIDE", "EQUAL", "NOTEQUAL", "SMALLERTHAN", "BIGGERTHAN", "SMALLERTHANEQUAL", 
 		"BIGGERTHANEQUAL", "OR", "AND", "NOT", "PARENTHESESLEFT", "PARENTHESESRIGHT", 
 		"RETURN", "SEMICOLON", "IS", "DATATYPES", "STRING", "INT", "BOOLEAN", 
 		"ID", "WS"
@@ -98,86 +94,47 @@ public class JavaBlyatParser extends Parser {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
-	public static class ParseContext extends ParserRuleContext {
+	public static class ProgramContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(JavaBlyatParser.EOF, 0); }
-		public List<FunctionContext> function() {
-			return getRuleContexts(FunctionContext.class);
-		}
-		public FunctionContext function(int i) {
-			return getRuleContext(FunctionContext.class,i);
-		}
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
 		}
 		public StatementContext statement(int i) {
 			return getRuleContext(StatementContext.class,i);
 		}
-		public ParseContext(ParserRuleContext parent, int invokingState) {
+		public ProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_parse; }
+		@Override public int getRuleIndex() { return RULE_program; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitParse(this);
+			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitProgram(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ParseContext parse() throws RecognitionException {
-		ParseContext _localctx = new ParseContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_parse);
+	public final ProgramContext program() throws RecognitionException {
+		ProgramContext _localctx = new ProgramContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_program);
 		int _la;
 		try {
-			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(43);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					{
-					setState(40);
-					function();
-					}
-					} 
-				}
-				setState(45);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
-			}
-			setState(49);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					{
-					setState(46);
-					statement();
-					}
-					} 
-				}
-				setState(51);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
-			}
-			setState(55);
+			setState(31);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==DATATYPES) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__4) | (1L << DATATYPES) | (1L << ID))) != 0)) {
 				{
 				{
-				setState(52);
-				function();
+				setState(28);
+				statement();
 				}
 				}
-				setState(57);
+				setState(33);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(58);
+			setState(34);
 			match(EOF);
 			}
 		}
@@ -211,9 +168,6 @@ public class JavaBlyatParser extends Parser {
 		public PrintContext print() {
 			return getRuleContext(PrintContext.class,0);
 		}
-		public Call_functionContext call_function() {
-			return getRuleContext(Call_functionContext.class,0);
-		}
 		public StatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -229,56 +183,49 @@ public class JavaBlyatParser extends Parser {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_statement);
 		try {
-			setState(67);
+			setState(42);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(60);
+				setState(36);
 				if_statement();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(61);
+				setState(37);
 				new_variable();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(62);
+				setState(38);
 				new_variable_declaration();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(63);
+				setState(39);
 				change_variable();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(64);
+				setState(40);
 				while_loop();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(65);
+				setState(41);
 				print();
-				}
-				break;
-			case 7:
-				enterOuterAlt(_localctx, 7);
-				{
-				setState(66);
-				call_function();
 				}
 				break;
 			}
@@ -330,36 +277,36 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(69);
+			setState(44);
 			match(T__0);
-			setState(70);
+			setState(45);
 			match(PARENTHESESLEFT);
-			setState(71);
+			setState(46);
 			((If_statementContext)_localctx).expr = expression(0);
-			setState(72);
+			setState(47);
 			match(PARENTHESESRIGHT);
-			setState(73);
+			setState(48);
 			((If_statementContext)_localctx).statementBlock = statement_block();
-			setState(77);
+			setState(52);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__1) {
 				{
 				{
-				setState(74);
+				setState(49);
 				elseif_block();
 				}
 				}
-				setState(79);
+				setState(54);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(81);
+			setState(56);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__2) {
 				{
-				setState(80);
+				setState(55);
 				else_block();
 				}
 			}
@@ -403,15 +350,15 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(83);
+			setState(58);
 			match(T__1);
-			setState(84);
+			setState(59);
 			match(PARENTHESESLEFT);
-			setState(85);
+			setState(60);
 			((Elseif_blockContext)_localctx).expr = expression(0);
-			setState(86);
+			setState(61);
 			match(PARENTHESESRIGHT);
-			setState(87);
+			setState(62);
 			((Elseif_blockContext)_localctx).statementBlock = statement_block();
 			}
 		}
@@ -448,9 +395,9 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(89);
+			setState(64);
 			match(T__2);
-			setState(90);
+			setState(65);
 			((Else_blockContext)_localctx).statementBlock = statement_block();
 			}
 		}
@@ -491,15 +438,15 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(92);
+			setState(67);
 			match(DATATYPES);
-			setState(93);
+			setState(68);
 			match(ID);
-			setState(94);
+			setState(69);
 			match(IS);
-			setState(95);
+			setState(70);
 			((New_variableContext)_localctx).expr = calc_expression(0);
-			setState(96);
+			setState(71);
 			match(SEMICOLON);
 			}
 		}
@@ -535,11 +482,11 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(98);
+			setState(73);
 			match(DATATYPES);
-			setState(99);
+			setState(74);
 			match(ID);
-			setState(100);
+			setState(75);
 			match(SEMICOLON);
 			}
 		}
@@ -580,13 +527,13 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(102);
+			setState(77);
 			((Change_variableContext)_localctx).id = match(ID);
-			setState(103);
+			setState(78);
 			match(IS);
-			setState(104);
+			setState(79);
 			((Change_variableContext)_localctx).expr = calc_expression(0);
-			setState(105);
+			setState(80);
 			match(SEMICOLON);
 			}
 		}
@@ -625,15 +572,15 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(107);
+			setState(82);
 			match(T__3);
-			setState(108);
+			setState(83);
 			match(PARENTHESESLEFT);
-			setState(109);
+			setState(84);
 			expression(0);
-			setState(110);
+			setState(85);
 			match(PARENTHESESRIGHT);
-			setState(111);
+			setState(86);
 			statement_block();
 			}
 		}
@@ -696,20 +643,20 @@ public class JavaBlyatParser extends Parser {
 		PrintContext _localctx = new PrintContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_print);
 		try {
-			setState(126);
+			setState(101);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
 				_localctx = new PrintIdContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(113);
+				setState(88);
 				match(T__4);
-				setState(114);
+				setState(89);
 				match(ID);
-				setState(115);
+				setState(90);
 				match(PARENTHESESRIGHT);
-				setState(116);
+				setState(91);
 				match(SEMICOLON);
 				}
 				break;
@@ -717,13 +664,13 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new PrintStringContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(117);
+				setState(92);
 				match(T__4);
-				setState(118);
+				setState(93);
 				match(STRING);
-				setState(119);
+				setState(94);
 				match(PARENTHESESRIGHT);
-				setState(120);
+				setState(95);
 				match(SEMICOLON);
 				}
 				break;
@@ -731,380 +678,16 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new PrintCalcExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(121);
+				setState(96);
 				match(T__4);
-				setState(122);
+				setState(97);
 				calc_expression(0);
-				setState(123);
+				setState(98);
 				match(PARENTHESESRIGHT);
-				setState(124);
+				setState(99);
 				match(SEMICOLON);
 				}
 				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class FunctionContext extends ParserRuleContext {
-		public TerminalNode DATATYPES() { return getToken(JavaBlyatParser.DATATYPES, 0); }
-		public TerminalNode ID() { return getToken(JavaBlyatParser.ID, 0); }
-		public TerminalNode PARENTHESESLEFT() { return getToken(JavaBlyatParser.PARENTHESESLEFT, 0); }
-		public TerminalNode PARENTHESESRIGHT() { return getToken(JavaBlyatParser.PARENTHESESRIGHT, 0); }
-		public Function_statement_blockContext function_statement_block() {
-			return getRuleContext(Function_statement_blockContext.class,0);
-		}
-		public Function_argumentContext function_argument() {
-			return getRuleContext(Function_argumentContext.class,0);
-		}
-		public FunctionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_function; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitFunction(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final FunctionContext function() throws RecognitionException {
-		FunctionContext _localctx = new FunctionContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_function);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(128);
-			match(DATATYPES);
-			setState(129);
-			match(T__5);
-			setState(130);
-			match(ID);
-			setState(131);
-			match(PARENTHESESLEFT);
-			setState(133);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==DATATYPES) {
-				{
-				setState(132);
-				function_argument();
-				}
-			}
-
-			setState(135);
-			match(PARENTHESESRIGHT);
-			setState(136);
-			function_statement_block();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Function_argumentContext extends ParserRuleContext {
-		public List<TerminalNode> DATATYPES() { return getTokens(JavaBlyatParser.DATATYPES); }
-		public TerminalNode DATATYPES(int i) {
-			return getToken(JavaBlyatParser.DATATYPES, i);
-		}
-		public List<Function_argument_typesContext> function_argument_types() {
-			return getRuleContexts(Function_argument_typesContext.class);
-		}
-		public Function_argument_typesContext function_argument_types(int i) {
-			return getRuleContext(Function_argument_typesContext.class,i);
-		}
-		public Function_argumentContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_function_argument; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitFunction_argument(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Function_argumentContext function_argument() throws RecognitionException {
-		Function_argumentContext _localctx = new Function_argumentContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_function_argument);
-		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(144);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					{
-					setState(138);
-					match(DATATYPES);
-					setState(139);
-					function_argument_types();
-					setState(140);
-					match(T__6);
-					}
-					} 
-				}
-				setState(146);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
-			}
-			setState(147);
-			match(DATATYPES);
-			setState(148);
-			function_argument_types();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Function_argument_typesContext extends ParserRuleContext {
-		public TerminalNode STRING() { return getToken(JavaBlyatParser.STRING, 0); }
-		public TerminalNode INT() { return getToken(JavaBlyatParser.INT, 0); }
-		public TerminalNode BOOLEAN() { return getToken(JavaBlyatParser.BOOLEAN, 0); }
-		public TerminalNode ID() { return getToken(JavaBlyatParser.ID, 0); }
-		public Function_argument_typesContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_function_argument_types; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitFunction_argument_types(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Function_argument_typesContext function_argument_types() throws RecognitionException {
-		Function_argument_typesContext _localctx = new Function_argument_typesContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_function_argument_types);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(150);
-			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING) | (1L << INT) | (1L << BOOLEAN) | (1L << ID))) != 0)) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Function_statement_blockContext extends ParserRuleContext {
-		public List<StatementContext> statement() {
-			return getRuleContexts(StatementContext.class);
-		}
-		public StatementContext statement(int i) {
-			return getRuleContext(StatementContext.class,i);
-		}
-		public TerminalNode RETURN() { return getToken(JavaBlyatParser.RETURN, 0); }
-		public TerminalNode ID() { return getToken(JavaBlyatParser.ID, 0); }
-		public TerminalNode SEMICOLON() { return getToken(JavaBlyatParser.SEMICOLON, 0); }
-		public Function_statement_blockContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_function_statement_block; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitFunction_statement_block(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Function_statement_blockContext function_statement_block() throws RecognitionException {
-		Function_statement_blockContext _localctx = new Function_statement_blockContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_function_statement_block);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(152);
-			match(T__7);
-			setState(156);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__4) | (1L << DATATYPES) | (1L << ID))) != 0)) {
-				{
-				{
-				setState(153);
-				statement();
-				}
-				}
-				setState(158);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			}
-			setState(162);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==RETURN) {
-				{
-				setState(159);
-				match(RETURN);
-				setState(160);
-				match(ID);
-				setState(161);
-				match(SEMICOLON);
-				}
-			}
-
-			setState(164);
-			match(T__8);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Call_functionContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(JavaBlyatParser.ID, 0); }
-		public TerminalNode PARENTHESESLEFT() { return getToken(JavaBlyatParser.PARENTHESESLEFT, 0); }
-		public TerminalNode PARENTHESESRIGHT() { return getToken(JavaBlyatParser.PARENTHESESRIGHT, 0); }
-		public TerminalNode SEMICOLON() { return getToken(JavaBlyatParser.SEMICOLON, 0); }
-		public Call_function_argumentContext call_function_argument() {
-			return getRuleContext(Call_function_argumentContext.class,0);
-		}
-		public Call_functionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_call_function; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitCall_function(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Call_functionContext call_function() throws RecognitionException {
-		Call_functionContext _localctx = new Call_functionContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_call_function);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(166);
-			match(ID);
-			setState(167);
-			match(PARENTHESESLEFT);
-			setState(169);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING) | (1L << INT) | (1L << BOOLEAN) | (1L << ID))) != 0)) {
-				{
-				setState(168);
-				call_function_argument();
-				}
-			}
-
-			setState(171);
-			match(PARENTHESESRIGHT);
-			setState(172);
-			match(SEMICOLON);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Call_function_argumentContext extends ParserRuleContext {
-		public List<Function_argument_typesContext> function_argument_types() {
-			return getRuleContexts(Function_argument_typesContext.class);
-		}
-		public Function_argument_typesContext function_argument_types(int i) {
-			return getRuleContext(Function_argument_typesContext.class,i);
-		}
-		public Call_function_argumentContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_call_function_argument; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitCall_function_argument(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Call_function_argumentContext call_function_argument() throws RecognitionException {
-		Call_function_argumentContext _localctx = new Call_function_argumentContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_call_function_argument);
-		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(179);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					{
-					setState(174);
-					function_argument_types();
-					setState(175);
-					match(T__6);
-					}
-					} 
-				}
-				setState(181);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
-			}
-			setState(182);
-			function_argument_types();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1146,30 +729,30 @@ public class JavaBlyatParser extends Parser {
 
 	public final Statement_blockContext statement_block() throws RecognitionException {
 		Statement_blockContext _localctx = new Statement_blockContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_statement_block);
+		enterRule(_localctx, 20, RULE_statement_block);
 		int _la;
 		try {
 			_localctx = new StatementBlockContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(184);
-			match(T__7);
-			setState(188);
+			setState(103);
+			match(T__5);
+			setState(107);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__4) | (1L << DATATYPES) | (1L << ID))) != 0)) {
 				{
 				{
-				setState(185);
+				setState(104);
 				statement();
 				}
 				}
-				setState(190);
+				setState(109);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(191);
-			match(T__8);
+			setState(110);
+			match(T__6);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1288,14 +871,14 @@ public class JavaBlyatParser extends Parser {
 		int _parentState = getState();
 		ExpressionContext _localctx = new ExpressionContext(_ctx, _parentState);
 		ExpressionContext _prevctx = _localctx;
-		int _startState = 34;
-		enterRecursionRule(_localctx, 34, RULE_expression, _p);
+		int _startState = 22;
+		enterRecursionRule(_localctx, 22, RULE_expression, _p);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(197);
+			setState(116);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NOT:
@@ -1304,9 +887,9 @@ public class JavaBlyatParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(194);
+				setState(113);
 				((NotExpressionContext)_localctx).operator = match(NOT);
-				setState(195);
+				setState(114);
 				((NotExpressionContext)_localctx).rightExpression = expression(2);
 				}
 				break;
@@ -1319,7 +902,7 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new LiteralExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(196);
+				setState(115);
 				literal();
 				}
 				break;
@@ -1327,25 +910,25 @@ public class JavaBlyatParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(210);
+			setState(129);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(208);
+					setState(127);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 					case 1:
 						{
 						_localctx = new EqualExpressionsContext(new ExpressionContext(_parentctx, _parentState));
 						((EqualExpressionsContext)_localctx).leftExpression = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(199);
+						setState(118);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(200);
+						setState(119);
 						((EqualExpressionsContext)_localctx).operator = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==EQUAL || _la==NOTEQUAL) ) {
@@ -1356,7 +939,7 @@ public class JavaBlyatParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(201);
+						setState(120);
 						((EqualExpressionsContext)_localctx).rightExpression = expression(6);
 						}
 						break;
@@ -1365,9 +948,9 @@ public class JavaBlyatParser extends Parser {
 						_localctx = new CompareExpressionsContext(new ExpressionContext(_parentctx, _parentState));
 						((CompareExpressionsContext)_localctx).leftExpression = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(202);
+						setState(121);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(203);
+						setState(122);
 						((CompareExpressionsContext)_localctx).operator = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SMALLERTHAN) | (1L << BIGGERTHAN) | (1L << SMALLERTHANEQUAL) | (1L << BIGGERTHANEQUAL))) != 0)) ) {
@@ -1378,7 +961,7 @@ public class JavaBlyatParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(204);
+						setState(123);
 						((CompareExpressionsContext)_localctx).rightExpression = expression(5);
 						}
 						break;
@@ -1387,9 +970,9 @@ public class JavaBlyatParser extends Parser {
 						_localctx = new OrAndandExpressionsContext(new ExpressionContext(_parentctx, _parentState));
 						((OrAndandExpressionsContext)_localctx).leftExpression = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(205);
+						setState(124);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(206);
+						setState(125);
 						((OrAndandExpressionsContext)_localctx).operator = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==OR || _la==AND) ) {
@@ -1400,16 +983,16 @@ public class JavaBlyatParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(207);
+						setState(126);
 						((OrAndandExpressionsContext)_localctx).rightExpression = expression(4);
 						}
 						break;
 					}
 					} 
 				}
-				setState(212);
+				setState(131);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 			}
 			}
 		}
@@ -1477,8 +1060,8 @@ public class JavaBlyatParser extends Parser {
 		int _parentState = getState();
 		Calc_expressionContext _localctx = new Calc_expressionContext(_ctx, _parentState);
 		Calc_expressionContext _prevctx = _localctx;
-		int _startState = 36;
-		enterRecursionRule(_localctx, 36, RULE_calc_expression, _p);
+		int _startState = 24;
+		enterRecursionRule(_localctx, 24, RULE_calc_expression, _p);
 		int _la;
 		try {
 			int _alt;
@@ -1489,13 +1072,13 @@ public class JavaBlyatParser extends Parser {
 			_ctx = _localctx;
 			_prevctx = _localctx;
 
-			setState(214);
+			setState(133);
 			literal();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(221);
+			setState(140);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,17,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -1505,9 +1088,9 @@ public class JavaBlyatParser extends Parser {
 					_localctx = new CalcValueExpressionContext(new Calc_expressionContext(_parentctx, _parentState));
 					((CalcValueExpressionContext)_localctx).leftExpression = _prevctx;
 					pushNewRecursionContext(_localctx, _startState, RULE_calc_expression);
-					setState(216);
+					setState(135);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(217);
+					setState(136);
 					((CalcValueExpressionContext)_localctx).operator = _input.LT(1);
 					_la = _input.LA(1);
 					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << TIMES) | (1L << DIVIDE))) != 0)) ) {
@@ -1518,14 +1101,14 @@ public class JavaBlyatParser extends Parser {
 						_errHandler.reportMatch(this);
 						consume();
 					}
-					setState(218);
+					setState(137);
 					((CalcValueExpressionContext)_localctx).rightExpression = calc_expression(3);
 					}
 					} 
 				}
-				setState(223);
+				setState(142);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,17,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
 			}
 			}
 		}
@@ -1606,34 +1189,34 @@ public class JavaBlyatParser extends Parser {
 
 	public final LiteralContext literal() throws RecognitionException {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_literal);
+		enterRule(_localctx, 26, RULE_literal);
 		try {
-			setState(235);
+			setState(154);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PARENTHESESLEFT:
 				_localctx = new LiteralExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(224);
+				setState(143);
 				match(PARENTHESESLEFT);
-				setState(227);
+				setState(146);
 				_errHandler.sync(this);
-				switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
+				switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 				case 1:
 					{
-					setState(225);
+					setState(144);
 					expression(0);
 					}
 					break;
 				case 2:
 					{
-					setState(226);
+					setState(145);
 					calc_expression(0);
 					}
 					break;
 				}
-				setState(229);
+				setState(148);
 				match(PARENTHESESRIGHT);
 				}
 				break;
@@ -1641,7 +1224,7 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new LiteralStringContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(231);
+				setState(150);
 				match(STRING);
 				}
 				break;
@@ -1649,7 +1232,7 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new LiteralIntContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(232);
+				setState(151);
 				match(INT);
 				}
 				break;
@@ -1657,7 +1240,7 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new LiteralBooleanContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(233);
+				setState(152);
 				match(BOOLEAN);
 				}
 				break;
@@ -1665,7 +1248,7 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new LiteralIdContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(234);
+				setState(153);
 				match(ID);
 				}
 				break;
@@ -1686,9 +1269,9 @@ public class JavaBlyatParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 17:
+		case 11:
 			return expression_sempred((ExpressionContext)_localctx, predIndex);
-		case 18:
+		case 12:
 			return calc_expression_sempred((Calc_expressionContext)_localctx, predIndex);
 		}
 		return true;
@@ -1713,83 +1296,51 @@ public class JavaBlyatParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3#\u00f0\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3!\u009f\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
-		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\4\25\t\25\3\2\7\2,\n\2\f\2\16\2/\13\2\3\2\7\2\62"+
-		"\n\2\f\2\16\2\65\13\2\3\2\7\28\n\2\f\2\16\2;\13\2\3\2\3\2\3\3\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\5\3F\n\3\3\4\3\4\3\4\3\4\3\4\3\4\7\4N\n\4\f\4\16\4Q\13"+
-		"\4\3\4\5\4T\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3"+
-		"\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n\3\13"+
-		"\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u0081"+
-		"\n\13\3\f\3\f\3\f\3\f\3\f\5\f\u0088\n\f\3\f\3\f\3\f\3\r\3\r\3\r\3\r\7"+
-		"\r\u0091\n\r\f\r\16\r\u0094\13\r\3\r\3\r\3\r\3\16\3\16\3\17\3\17\7\17"+
-		"\u009d\n\17\f\17\16\17\u00a0\13\17\3\17\3\17\3\17\5\17\u00a5\n\17\3\17"+
-		"\3\17\3\20\3\20\3\20\5\20\u00ac\n\20\3\20\3\20\3\20\3\21\3\21\3\21\7\21"+
-		"\u00b4\n\21\f\21\16\21\u00b7\13\21\3\21\3\21\3\22\3\22\7\22\u00bd\n\22"+
-		"\f\22\16\22\u00c0\13\22\3\22\3\22\3\23\3\23\3\23\3\23\5\23\u00c8\n\23"+
-		"\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\7\23\u00d3\n\23\f\23\16"+
-		"\23\u00d6\13\23\3\24\3\24\3\24\3\24\3\24\3\24\7\24\u00de\n\24\f\24\16"+
-		"\24\u00e1\13\24\3\25\3\25\3\25\5\25\u00e6\n\25\3\25\3\25\3\25\3\25\3\25"+
-		"\3\25\5\25\u00ee\n\25\3\25\2\4$&\26\2\4\6\b\n\f\16\20\22\24\26\30\32\34"+
-		"\36 \"$&(\2\7\3\2\37\"\3\2\20\21\3\2\22\25\3\2\26\27\3\2\f\17\2\u00f9"+
-		"\2-\3\2\2\2\4E\3\2\2\2\6G\3\2\2\2\bU\3\2\2\2\n[\3\2\2\2\f^\3\2\2\2\16"+
-		"d\3\2\2\2\20h\3\2\2\2\22m\3\2\2\2\24\u0080\3\2\2\2\26\u0082\3\2\2\2\30"+
-		"\u0092\3\2\2\2\32\u0098\3\2\2\2\34\u009a\3\2\2\2\36\u00a8\3\2\2\2 \u00b5"+
-		"\3\2\2\2\"\u00ba\3\2\2\2$\u00c7\3\2\2\2&\u00d7\3\2\2\2(\u00ed\3\2\2\2"+
-		"*,\5\26\f\2+*\3\2\2\2,/\3\2\2\2-+\3\2\2\2-.\3\2\2\2.\63\3\2\2\2/-\3\2"+
-		"\2\2\60\62\5\4\3\2\61\60\3\2\2\2\62\65\3\2\2\2\63\61\3\2\2\2\63\64\3\2"+
-		"\2\2\649\3\2\2\2\65\63\3\2\2\2\668\5\26\f\2\67\66\3\2\2\28;\3\2\2\29\67"+
-		"\3\2\2\29:\3\2\2\2:<\3\2\2\2;9\3\2\2\2<=\7\2\2\3=\3\3\2\2\2>F\5\6\4\2"+
-		"?F\5\f\7\2@F\5\16\b\2AF\5\20\t\2BF\5\22\n\2CF\5\24\13\2DF\5\36\20\2E>"+
-		"\3\2\2\2E?\3\2\2\2E@\3\2\2\2EA\3\2\2\2EB\3\2\2\2EC\3\2\2\2ED\3\2\2\2F"+
-		"\5\3\2\2\2GH\7\3\2\2HI\7\31\2\2IJ\5$\23\2JK\7\32\2\2KO\5\"\22\2LN\5\b"+
-		"\5\2ML\3\2\2\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2PS\3\2\2\2QO\3\2\2\2RT\5\n"+
-		"\6\2SR\3\2\2\2ST\3\2\2\2T\7\3\2\2\2UV\7\4\2\2VW\7\31\2\2WX\5$\23\2XY\7"+
-		"\32\2\2YZ\5\"\22\2Z\t\3\2\2\2[\\\7\5\2\2\\]\5\"\22\2]\13\3\2\2\2^_\7\36"+
-		"\2\2_`\7\"\2\2`a\7\35\2\2ab\5&\24\2bc\7\34\2\2c\r\3\2\2\2de\7\36\2\2e"+
-		"f\7\"\2\2fg\7\34\2\2g\17\3\2\2\2hi\7\"\2\2ij\7\35\2\2jk\5&\24\2kl\7\34"+
-		"\2\2l\21\3\2\2\2mn\7\6\2\2no\7\31\2\2op\5$\23\2pq\7\32\2\2qr\5\"\22\2"+
-		"r\23\3\2\2\2st\7\7\2\2tu\7\"\2\2uv\7\32\2\2v\u0081\7\34\2\2wx\7\7\2\2"+
-		"xy\7\37\2\2yz\7\32\2\2z\u0081\7\34\2\2{|\7\7\2\2|}\5&\24\2}~\7\32\2\2"+
-		"~\177\7\34\2\2\177\u0081\3\2\2\2\u0080s\3\2\2\2\u0080w\3\2\2\2\u0080{"+
-		"\3\2\2\2\u0081\25\3\2\2\2\u0082\u0083\7\36\2\2\u0083\u0084\7\b\2\2\u0084"+
-		"\u0085\7\"\2\2\u0085\u0087\7\31\2\2\u0086\u0088\5\30\r\2\u0087\u0086\3"+
-		"\2\2\2\u0087\u0088\3\2\2\2\u0088\u0089\3\2\2\2\u0089\u008a\7\32\2\2\u008a"+
-		"\u008b\5\34\17\2\u008b\27\3\2\2\2\u008c\u008d\7\36\2\2\u008d\u008e\5\32"+
-		"\16\2\u008e\u008f\7\t\2\2\u008f\u0091\3\2\2\2\u0090\u008c\3\2\2\2\u0091"+
-		"\u0094\3\2\2\2\u0092\u0090\3\2\2\2\u0092\u0093\3\2\2\2\u0093\u0095\3\2"+
-		"\2\2\u0094\u0092\3\2\2\2\u0095\u0096\7\36\2\2\u0096\u0097\5\32\16\2\u0097"+
-		"\31\3\2\2\2\u0098\u0099\t\2\2\2\u0099\33\3\2\2\2\u009a\u009e\7\n\2\2\u009b"+
-		"\u009d\5\4\3\2\u009c\u009b\3\2\2\2\u009d\u00a0\3\2\2\2\u009e\u009c\3\2"+
-		"\2\2\u009e\u009f\3\2\2\2\u009f\u00a4\3\2\2\2\u00a0\u009e\3\2\2\2\u00a1"+
-		"\u00a2\7\33\2\2\u00a2\u00a3\7\"\2\2\u00a3\u00a5\7\34\2\2\u00a4\u00a1\3"+
-		"\2\2\2\u00a4\u00a5\3\2\2\2\u00a5\u00a6\3\2\2\2\u00a6\u00a7\7\13\2\2\u00a7"+
-		"\35\3\2\2\2\u00a8\u00a9\7\"\2\2\u00a9\u00ab\7\31\2\2\u00aa\u00ac\5 \21"+
-		"\2\u00ab\u00aa\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad\u00ae"+
-		"\7\32\2\2\u00ae\u00af\7\34\2\2\u00af\37\3\2\2\2\u00b0\u00b1\5\32\16\2"+
-		"\u00b1\u00b2\7\t\2\2\u00b2\u00b4\3\2\2\2\u00b3\u00b0\3\2\2\2\u00b4\u00b7"+
-		"\3\2\2\2\u00b5\u00b3\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\u00b8\3\2\2\2\u00b7"+
-		"\u00b5\3\2\2\2\u00b8\u00b9\5\32\16\2\u00b9!\3\2\2\2\u00ba\u00be\7\n\2"+
-		"\2\u00bb\u00bd\5\4\3\2\u00bc\u00bb\3\2\2\2\u00bd\u00c0\3\2\2\2\u00be\u00bc"+
-		"\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf\u00c1\3\2\2\2\u00c0\u00be\3\2\2\2\u00c1"+
-		"\u00c2\7\13\2\2\u00c2#\3\2\2\2\u00c3\u00c4\b\23\1\2\u00c4\u00c5\7\30\2"+
-		"\2\u00c5\u00c8\5$\23\4\u00c6\u00c8\5(\25\2\u00c7\u00c3\3\2\2\2\u00c7\u00c6"+
-		"\3\2\2\2\u00c8\u00d4\3\2\2\2\u00c9\u00ca\f\7\2\2\u00ca\u00cb\t\3\2\2\u00cb"+
-		"\u00d3\5$\23\b\u00cc\u00cd\f\6\2\2\u00cd\u00ce\t\4\2\2\u00ce\u00d3\5$"+
-		"\23\7\u00cf\u00d0\f\5\2\2\u00d0\u00d1\t\5\2\2\u00d1\u00d3\5$\23\6\u00d2"+
-		"\u00c9\3\2\2\2\u00d2\u00cc\3\2\2\2\u00d2\u00cf\3\2\2\2\u00d3\u00d6\3\2"+
-		"\2\2\u00d4\u00d2\3\2\2\2\u00d4\u00d5\3\2\2\2\u00d5%\3\2\2\2\u00d6\u00d4"+
-		"\3\2\2\2\u00d7\u00d8\b\24\1\2\u00d8\u00d9\5(\25\2\u00d9\u00df\3\2\2\2"+
-		"\u00da\u00db\f\4\2\2\u00db\u00dc\t\6\2\2\u00dc\u00de\5&\24\5\u00dd\u00da"+
-		"\3\2\2\2\u00de\u00e1\3\2\2\2\u00df\u00dd\3\2\2\2\u00df\u00e0\3\2\2\2\u00e0"+
-		"\'\3\2\2\2\u00e1\u00df\3\2\2\2\u00e2\u00e5\7\31\2\2\u00e3\u00e6\5$\23"+
-		"\2\u00e4\u00e6\5&\24\2\u00e5\u00e3\3\2\2\2\u00e5\u00e4\3\2\2\2\u00e6\u00e7"+
-		"\3\2\2\2\u00e7\u00e8\7\32\2\2\u00e8\u00ee\3\2\2\2\u00e9\u00ee\7\37\2\2"+
-		"\u00ea\u00ee\7 \2\2\u00eb\u00ee\7!\2\2\u00ec\u00ee\7\"\2\2\u00ed\u00e2"+
-		"\3\2\2\2\u00ed\u00e9\3\2\2\2\u00ed\u00ea\3\2\2\2\u00ed\u00eb\3\2\2\2\u00ed"+
-		"\u00ec\3\2\2\2\u00ee)\3\2\2\2\26-\639EOS\u0080\u0087\u0092\u009e\u00a4"+
-		"\u00ab\u00b5\u00be\u00c7\u00d2\u00d4\u00df\u00e5\u00ed";
+		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\7\2 \n\2\f\2\16\2#\13\2\3"+
+		"\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3-\n\3\3\4\3\4\3\4\3\4\3\4\3\4\7\4\65"+
+		"\n\4\f\4\16\48\13\4\3\4\5\4;\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3"+
+		"\7\3\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n"+
+		"\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3"+
+		"\13\3\13\5\13h\n\13\3\f\3\f\7\fl\n\f\f\f\16\fo\13\f\3\f\3\f\3\r\3\r\3"+
+		"\r\3\r\5\rw\n\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\7\r\u0082\n\r\f\r"+
+		"\16\r\u0085\13\r\3\16\3\16\3\16\3\16\3\16\3\16\7\16\u008d\n\16\f\16\16"+
+		"\16\u0090\13\16\3\17\3\17\3\17\5\17\u0095\n\17\3\17\3\17\3\17\3\17\3\17"+
+		"\3\17\5\17\u009d\n\17\3\17\2\4\30\32\20\2\4\6\b\n\f\16\20\22\24\26\30"+
+		"\32\34\2\6\3\2\16\17\3\2\20\23\3\2\24\25\3\2\n\r\2\u00a5\2!\3\2\2\2\4"+
+		",\3\2\2\2\6.\3\2\2\2\b<\3\2\2\2\nB\3\2\2\2\fE\3\2\2\2\16K\3\2\2\2\20O"+
+		"\3\2\2\2\22T\3\2\2\2\24g\3\2\2\2\26i\3\2\2\2\30v\3\2\2\2\32\u0086\3\2"+
+		"\2\2\34\u009c\3\2\2\2\36 \5\4\3\2\37\36\3\2\2\2 #\3\2\2\2!\37\3\2\2\2"+
+		"!\"\3\2\2\2\"$\3\2\2\2#!\3\2\2\2$%\7\2\2\3%\3\3\2\2\2&-\5\6\4\2\'-\5\f"+
+		"\7\2(-\5\16\b\2)-\5\20\t\2*-\5\22\n\2+-\5\24\13\2,&\3\2\2\2,\'\3\2\2\2"+
+		",(\3\2\2\2,)\3\2\2\2,*\3\2\2\2,+\3\2\2\2-\5\3\2\2\2./\7\3\2\2/\60\7\27"+
+		"\2\2\60\61\5\30\r\2\61\62\7\30\2\2\62\66\5\26\f\2\63\65\5\b\5\2\64\63"+
+		"\3\2\2\2\658\3\2\2\2\66\64\3\2\2\2\66\67\3\2\2\2\67:\3\2\2\28\66\3\2\2"+
+		"\29;\5\n\6\2:9\3\2\2\2:;\3\2\2\2;\7\3\2\2\2<=\7\4\2\2=>\7\27\2\2>?\5\30"+
+		"\r\2?@\7\30\2\2@A\5\26\f\2A\t\3\2\2\2BC\7\5\2\2CD\5\26\f\2D\13\3\2\2\2"+
+		"EF\7\34\2\2FG\7 \2\2GH\7\33\2\2HI\5\32\16\2IJ\7\32\2\2J\r\3\2\2\2KL\7"+
+		"\34\2\2LM\7 \2\2MN\7\32\2\2N\17\3\2\2\2OP\7 \2\2PQ\7\33\2\2QR\5\32\16"+
+		"\2RS\7\32\2\2S\21\3\2\2\2TU\7\6\2\2UV\7\27\2\2VW\5\30\r\2WX\7\30\2\2X"+
+		"Y\5\26\f\2Y\23\3\2\2\2Z[\7\7\2\2[\\\7 \2\2\\]\7\30\2\2]h\7\32\2\2^_\7"+
+		"\7\2\2_`\7\35\2\2`a\7\30\2\2ah\7\32\2\2bc\7\7\2\2cd\5\32\16\2de\7\30\2"+
+		"\2ef\7\32\2\2fh\3\2\2\2gZ\3\2\2\2g^\3\2\2\2gb\3\2\2\2h\25\3\2\2\2im\7"+
+		"\b\2\2jl\5\4\3\2kj\3\2\2\2lo\3\2\2\2mk\3\2\2\2mn\3\2\2\2np\3\2\2\2om\3"+
+		"\2\2\2pq\7\t\2\2q\27\3\2\2\2rs\b\r\1\2st\7\26\2\2tw\5\30\r\4uw\5\34\17"+
+		"\2vr\3\2\2\2vu\3\2\2\2w\u0083\3\2\2\2xy\f\7\2\2yz\t\2\2\2z\u0082\5\30"+
+		"\r\b{|\f\6\2\2|}\t\3\2\2}\u0082\5\30\r\7~\177\f\5\2\2\177\u0080\t\4\2"+
+		"\2\u0080\u0082\5\30\r\6\u0081x\3\2\2\2\u0081{\3\2\2\2\u0081~\3\2\2\2\u0082"+
+		"\u0085\3\2\2\2\u0083\u0081\3\2\2\2\u0083\u0084\3\2\2\2\u0084\31\3\2\2"+
+		"\2\u0085\u0083\3\2\2\2\u0086\u0087\b\16\1\2\u0087\u0088\5\34\17\2\u0088"+
+		"\u008e\3\2\2\2\u0089\u008a\f\4\2\2\u008a\u008b\t\5\2\2\u008b\u008d\5\32"+
+		"\16\5\u008c\u0089\3\2\2\2\u008d\u0090\3\2\2\2\u008e\u008c\3\2\2\2\u008e"+
+		"\u008f\3\2\2\2\u008f\33\3\2\2\2\u0090\u008e\3\2\2\2\u0091\u0094\7\27\2"+
+		"\2\u0092\u0095\5\30\r\2\u0093\u0095\5\32\16\2\u0094\u0092\3\2\2\2\u0094"+
+		"\u0093\3\2\2\2\u0095\u0096\3\2\2\2\u0096\u0097\7\30\2\2\u0097\u009d\3"+
+		"\2\2\2\u0098\u009d\7\35\2\2\u0099\u009d\7\36\2\2\u009a\u009d\7\37\2\2"+
+		"\u009b\u009d\7 \2\2\u009c\u0091\3\2\2\2\u009c\u0098\3\2\2\2\u009c\u0099"+
+		"\3\2\2\2\u009c\u009a\3\2\2\2\u009c\u009b\3\2\2\2\u009d\35\3\2\2\2\16!"+
+		",\66:gmv\u0081\u0083\u008e\u0094\u009c";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

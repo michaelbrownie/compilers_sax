@@ -15,7 +15,7 @@ public class JavaBlyat {
         CommonTokenStream commonTokenStream = new CommonTokenStream(javaBlyatLexer);
 
         JavaBlyatParser javaBlyatParser = new JavaBlyatParser(commonTokenStream);
-        ParseTree tree = javaBlyatParser.parse();
+        ParseTree tree = javaBlyatParser.program();
 
         //TypeChecker
         TypeChecker typeChecker = new TypeChecker();

@@ -1,4 +1,4 @@
-// Generated from C:/Users/micha/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
+// Generated from C:/Users/KYLIAN/Documents/compilers_sax\JavaBlyat.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -10,11 +10,11 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface JavaBlyatVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link JavaBlyatParser#parse}.
+	 * Visit a parse tree produced by {@link JavaBlyatParser#program}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParse(JavaBlyatParser.ParseContext ctx);
+	T visitProgram(JavaBlyatParser.ProgramContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JavaBlyatParser#statement}.
 	 * @param ctx the parse tree
@@ -84,42 +84,6 @@ public interface JavaBlyatVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPrintCalcExpression(JavaBlyatParser.PrintCalcExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaBlyatParser#function}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunction(JavaBlyatParser.FunctionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaBlyatParser#function_argument}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunction_argument(JavaBlyatParser.Function_argumentContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaBlyatParser#function_argument_types}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunction_argument_types(JavaBlyatParser.Function_argument_typesContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaBlyatParser#function_statement_block}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunction_statement_block(JavaBlyatParser.Function_statement_blockContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaBlyatParser#call_function}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCall_function(JavaBlyatParser.Call_functionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaBlyatParser#call_function_argument}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCall_function_argument(JavaBlyatParser.Call_function_argumentContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code statementBlock}
 	 * labeled alternative in {@link JavaBlyatParser#statement_block}.

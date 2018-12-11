@@ -1,4 +1,3 @@
-import models.Function;
 import models.Scope;
 import models.Symbol;
 import models.Type;
@@ -23,8 +22,8 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     }
 
     @Override
-    public Object visitParse(JavaBlyatParser.ParseContext ctx) {
-        return super.visitParse(ctx);
+    public Object visitProgram(JavaBlyatParser.ProgramContext ctx) {
+        return super.visitProgram(ctx);
     }
 
     @Override
@@ -50,11 +49,11 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitNew_variable(JavaBlyatParser.New_variableContext ctx) {
         Symbol symbol = new Symbol(ctx.ID().getText(), Type.getType(ctx.DATATYPES().getText()));
-        this.scopeTree.put(ctx, scope); //Vragen
+        this.scopeTree.put(ctx, scope);
         this.scope.increaseStack();
         if(scope.addVariableToScope(symbol)){
             this.variableTree.put(ctx,symbol);
-            this.scope.setPosOnSymbol(symbol); //Vragen
+            this.scope.setPosOnSymbol(symbol);
             return super.visitNew_variable(ctx);
         }
         throw new RuntimeException("Variable " + ctx.ID().getText() + " is already assigned!");
@@ -95,48 +94,6 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitPrintCalcExpression(JavaBlyatParser.PrintCalcExpressionContext ctx) {
         return super.visitPrintCalcExpression(ctx);
-    }
-
-    @Override
-    public Object visitFunction(JavaBlyatParser.FunctionContext ctx) {
-        this.scopeTree.put(ctx, scope);
-        //Kijken als er niet al een functie bestaat met die naam
-        if(this.scope.searchFunction(ctx.ID().getText()) == null){
-            Function function = new Function(ctx.ID().getText(), Type.getType(ctx.DATATYPES().getText()));
-            if(this.scope.addFunctionToScope(function)){
-
-            } else {
-
-            }
-            return super.visitFunction(ctx);
-        }
-        throw new RuntimeException("Duplicate name Function:" + ctx.ID().getText());
-        //
-    }
-
-    @Override
-    public Object visitFunction_argument(JavaBlyatParser.Function_argumentContext ctx) {
-        return super.visitFunction_argument(ctx);
-    }
-
-    @Override
-    public Object visitFunction_argument_types(JavaBlyatParser.Function_argument_typesContext ctx) {
-        return super.visitFunction_argument_types(ctx);
-    }
-
-    @Override
-    public Object visitFunction_statement_block(JavaBlyatParser.Function_statement_blockContext ctx) {
-        return super.visitFunction_statement_block(ctx);
-    }
-
-    @Override
-    public Object visitCall_function(JavaBlyatParser.Call_functionContext ctx) {
-        return super.visitCall_function(ctx);
-    }
-
-    @Override
-    public Object visitCall_function_argument(JavaBlyatParser.Call_function_argumentContext ctx) {
-        return super.visitCall_function_argument(ctx);
     }
 
     @Override

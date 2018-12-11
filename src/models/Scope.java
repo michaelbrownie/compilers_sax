@@ -9,7 +9,6 @@ public class Scope {
     private int pos;
     private Scope parent;
     private HashMap<String, Symbol> variableMap;
-    private HashMap<String, FunctionScope> functionMap;
 
     private ArrayList<Scope> childList;
 
@@ -24,7 +23,6 @@ public class Scope {
             this.stackSize = parent.stackSize;
         }
         this.variableMap = new HashMap<>();
-        this.functionMap = new HashMap<>();
         this.childList = new ArrayList<>();
     }
 
@@ -38,7 +36,6 @@ public class Scope {
         }
         this.stackSize = stackSize;
         this.variableMap = new HashMap<>();
-        this.functionMap = new HashMap<>();
         this.childList = new ArrayList<>();
     }
 
@@ -59,17 +56,6 @@ public class Scope {
         return false;
     }
 
-    public boolean addFunctionToScope(Function function){
-        FunctionScope fs = this.searchFunction(function.getTitle());
-        if(fs == null){
-            FunctionScope functionScope = new FunctionScope(this, function.getTitle(), function);
-            this.functionMap.put(function.getTitle(), functionScope);
-            this.childList.add(functionScope);
-            return true;
-        }
-        return false;
-    }
-
     public Symbol searchVariable(String title){
         if(parent != null){
             if(this.variableMap.get(title) != null){
@@ -81,20 +67,6 @@ public class Scope {
             return this.variableMap.get(title);
         }
     }
-
-    public FunctionScope searchFunction(String title){
-        FunctionScope fs = this.functionMap.get(title);
-        if(this.parent != null){
-            if(fs != null){
-                return fs;
-            } else {
-                return this.parent.searchFunction(title);
-            }
-        } else {
-            return fs;
-        }
-    }
-
 
     public void increaseStack(){
         this.stackSize++;

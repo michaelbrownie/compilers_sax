@@ -14,8 +14,8 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
     }
 
     @Override
-    public Object visitParse(JavaBlyatParser.ParseContext ctx) {
-        return super.visitParse(ctx);
+    public Object visitProgram(JavaBlyatParser.ProgramContext ctx) {
+        return super.visitProgram(ctx);
     }
 
     @Override
@@ -81,36 +81,6 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitPrintCalcExpression(JavaBlyatParser.PrintCalcExpressionContext ctx) {
         return super.visitPrintCalcExpression(ctx);
-    }
-
-    @Override
-    public Object visitFunction(JavaBlyatParser.FunctionContext ctx) {
-        return super.visitFunction(ctx);
-    }
-
-    @Override
-    public Object visitFunction_argument(JavaBlyatParser.Function_argumentContext ctx) {
-        return super.visitFunction_argument(ctx);
-    }
-
-    @Override
-    public Object visitFunction_argument_types(JavaBlyatParser.Function_argument_typesContext ctx) {
-        return super.visitFunction_argument_types(ctx);
-    }
-
-    @Override
-    public Object visitFunction_statement_block(JavaBlyatParser.Function_statement_blockContext ctx) {
-        return super.visitFunction_statement_block(ctx);
-    }
-
-    @Override
-    public Object visitCall_function(JavaBlyatParser.Call_functionContext ctx) {
-        return super.visitCall_function(ctx);
-    }
-
-    @Override
-    public Object visitCall_function_argument(JavaBlyatParser.Call_function_argumentContext ctx) {
-        return super.visitCall_function_argument(ctx);
     }
 
     @Override
