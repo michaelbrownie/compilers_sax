@@ -49,11 +49,11 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitNew_variable(JavaBlyatParser.New_variableContext ctx) {
         Symbol symbol = new Symbol(ctx.ID().getText(), Type.getType(ctx.DATATYPES().getText()));
-        this.scopeTree.put(ctx, scope);
+        this.scopeTree.put(ctx, scope); //Vragen
         this.scope.increaseStack();
         if(scope.addVariableToScope(symbol)){
             this.variableTree.put(ctx,symbol);
-            this.scope.setPosOnSymbol(symbol);
+            this.scope.setPosOnSymbol(symbol); //Vragen
             return super.visitNew_variable(ctx);
         } else {
             throw new RuntimeException("Variable " + ctx.ID().getText() + " is already assigned!");
@@ -100,6 +100,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitFunction(JavaBlyatParser.FunctionContext ctx) {
+
         return super.visitFunction(ctx);
     }
 
