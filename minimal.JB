@@ -1,0 +1,35 @@
+//Minimaal 2 datatypen
+stringblyat stringtype = "test";
+intblyat inttype = 5;
+booleanblyat booltype;
+
+//Ondersteuning	voor variabelen.
+stringtype = "test1";
+inttype = 10;
+booltype = trueblyat;
+
+//Rekenkundige expressies (+,-,*,/,()).
+inttype = 10 + 10;
+
+//Logische expressies (<,<=,=,!=,>=,>,or,and,not). && Conditionalbranching (denk aan bijvoorbeeld een if/else-if/else statement).
+ifblyat(5 == 5){
+
+} elseifblyat(4 < 5) {
+
+} elseifblyat(4 < 5) {
+
+}
+// Looping statement(s) (bijvoorbeeld while of for).
+whileblyat(trueblyat){
+    stringblyat henk = "henk";
+}
+booltype = trueblyat;
+stringtype = "hello";
+
+// Ondersteuning voor het printen van expressies en	variabelen	naar de	console.
+cyka.blyat(stringtype);
+cyka.blyat(inttype);
+cyka.blyat(1);
+cyka.blyat(1 + 1);
+cyka.blyat(1 < 2);
+

@@ -4,7 +4,6 @@ public enum Type {
     STRING,
     INT,
     BOOL,
-    VOID,
     INVALID;
 
     public static Type getType(String datatype) {
@@ -15,8 +14,6 @@ public enum Type {
                 return Type.INT;
             case "booleanblyat":
                 return Type.BOOL;
-            case "voidblyat":
-                return Type.VOID;
             default:
                 return Type.INVALID;
         }

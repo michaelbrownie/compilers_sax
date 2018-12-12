@@ -29,6 +29,7 @@ INT=28
 BOOLEAN=29
 ID=30
 WS=31
+COMMENT=32
 'ifblyat'=1
 'elseifblyat'=2
 'elseblyat'=3

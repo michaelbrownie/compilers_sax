@@ -85,6 +85,13 @@ public interface JavaBlyatVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrintCalcExpression(JavaBlyatParser.PrintCalcExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code printExpression}
+	 * labeled alternative in {@link JavaBlyatParser#print}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintExpression(JavaBlyatParser.PrintExpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code statementBlock}
 	 * labeled alternative in {@link JavaBlyatParser#statement_block}.
 	 * @param ctx the parse tree

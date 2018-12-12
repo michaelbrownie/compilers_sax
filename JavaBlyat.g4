@@ -26,7 +26,8 @@ while_loop: 'whileblyat' '(' expression ')' statement_block;
 //Print
 print: 'cyka.blyat(' ID ')' SEMICOLON #printId
      | 'cyka.blyat(' STRING ')' SEMICOLON #printString
-     | 'cyka.blyat(' calc_expression ')' SEMICOLON #printCalcExpression;
+     | 'cyka.blyat(' calc_expression ')' SEMICOLON #printCalcExpression
+     | 'cyka.blyat(' expression ')' SEMICOLON #printExpression;
 
 statement_block: '{' statement* '}' #statementBlock;
 
@@ -69,10 +70,11 @@ RETURN: 'returnblyat';
 SEMICOLON: ';';
 IS: '=';
 
-DATATYPES: ('stringblyat' | 'intblyat' | 'booleanblyat' | 'voidblyat');
+DATATYPES: ('stringblyat' | 'intblyat' | 'booleanblyat');
 
 STRING: '"'(~[\\"])*?'"';
 INT: [0-9]+;
 BOOLEAN: 'trueblyat' | 'falseblyat';
 ID: [a-zA-Z] [A-Za-z0-9]*;
 WS: [ \t\r\n]+ -> skip;
+COMMENT: '//' ~[\r\n]* -> skip;
