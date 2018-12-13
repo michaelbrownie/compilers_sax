@@ -24,7 +24,6 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         this.scopeTree = new ParseTreeProperty();
         this.variableTree = new ParseTreeProperty();
         this.valueExpressionTree = new ParseTreeProperty();
-
         this.scope = new Scope("method_" + scope_count_method);
     }
 
@@ -72,7 +71,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         scopeTree.put(ctx, this.scope);
         if(visit(ctx.expression()) == Type.BOOL){
             visit(ctx.statement_block());
-            return Type.BOOL;
+            return null;
         }
         throw new RuntimeException("One elseifblyat statement in a ifblyat statement on rule: " + ctx.getStart().getLine() + " is not a comparison or a boolean.");
     }
@@ -153,12 +152,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitCompareExpressions(JavaBlyatParser.CompareExpressionsContext ctx) {
         this.scopeTree.put(ctx, scope);
-        Type left = (Type) visit(ctx.leftExpression);
-        Type right = (Type) visit(ctx.rightExpression);
-        if(this.compare(left, right)){
-            return Type.BOOL;
-        }
-        throw new RuntimeException("You can't compare an " + left.toString() + " with " + right.toString());
+        return Type.BOOL;
     }
 
     @Override
@@ -170,19 +164,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitEqualExpressions(JavaBlyatParser.EqualExpressionsContext ctx) {
         this.scopeTree.put(ctx, scope);
-        Type left = (Type) visit(ctx.leftExpression);
-        Type right = (Type) visit(ctx.rightExpression);
-        if(this.compare(left, right)){
-            return Type.BOOL;
-        }
-        throw new RuntimeException("You can't compare an " + left.toString() + " with " + right.toString());
-    }
-
-    private boolean compare(Type left, Type right){
-        if(left == Type.INT && right == Type.INT || left == Type.BOOL && right == Type.BOOL){
-            return true;
-        }
-        return false;
+        return Type.BOOL;
     }
 
     @Override
@@ -194,14 +176,9 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitCalcValueExpression(JavaBlyatParser.CalcValueExpressionContext ctx) {
         this.scopeTree.put(ctx, scope);
-        if(ctx.operator.getText().equals("+") || ctx.operator.getText().equals("-") || ctx.operator.getText().equals("*") || ctx.operator.getText().equals("/")){
-            if (visit(ctx.leftExpression) == Type.INT && visit(ctx.rightExpression) == Type.INT) {
-                Value v = new Value(Type.INT);
-                this.valueExpressionTree.put(ctx, v);
-                return Type.INT;
-            }
-        }
-        return null;
+        Value v = new Value(Type.INT);
+        this.valueExpressionTree.put(ctx, v);
+        return Type.INT;
     }
 
     @Override
