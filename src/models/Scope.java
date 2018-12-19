@@ -47,7 +47,7 @@ public class Scope {
     }
 
     public Symbol searchVariable(String title){
-        if(parent != null){
+        if(this.parent != null){
             if(this.variableMap.get(title) != null){
                 return this.variableMap.get(title);
             } else {
@@ -56,6 +56,22 @@ public class Scope {
         } else {
             return this.variableMap.get(title);
         }
+    }
+
+    public int countMaxStack() {
+        int stackSize = this.stackSize;
+        for(Scope s: this.childList){
+            stackSize += s.stackSize;
+        }
+        return stackSize;
+    }
+
+    public int countLocals() {
+        int aantal = this.variableMap.size();
+        for(Scope s: this.childList){
+           aantal += s.variableMap.size();
+        }
+        return aantal;
     }
 
     public void increaseStack(){
@@ -67,14 +83,14 @@ public class Scope {
     }
 
     public Scope closeChildScope(){
-        return parent;
+        return this.parent;
     }
 
     public void setPosOnSymbol(Symbol symbol) {
-        symbol.setPos(pos++);
+        symbol.setPos(this.pos++);
     }
 
     public Scope getParent() {
-        return parent;
+        return this.parent;
     }
 }

@@ -220,4 +220,20 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         }
         throw new RuntimeException("Variable " + ctx.ID().getText() + " does not exist in the current scope!");
     }
+
+    public ParseTreeProperty getScopeTree() {
+        return scopeTree;
+    }
+
+    public ParseTreeProperty getVariableTree() {
+        return variableTree;
+    }
+
+    public ParseTreeProperty getValueExpressionTree() {
+        return valueExpressionTree;
+    }
+
+    public Scope getScope() {
+        return scope;
+    }
 }

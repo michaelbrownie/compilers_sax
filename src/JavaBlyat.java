@@ -24,6 +24,16 @@ public class JavaBlyat {
         //ScopeChecker
         ScopeChecker scopeChecker = new ScopeChecker();
         scopeChecker.visit(tree);
+
+        String fileName = file.substring(0, file.length() - 3);
+
+        CodeGen codeGen = new CodeGen(fileName, scopeChecker.getScope(), scopeChecker.getScopeTree(), scopeChecker.getVariableTree(), scopeChecker.getValueExpressionTree());
+        codeGen.visit(tree);
+        codeGen.getPrintWriter().flush();
+        codeGen.getPrintWriter().close();
+
+        String jasminFile = fileName + ".j";
+
     }
 
 
