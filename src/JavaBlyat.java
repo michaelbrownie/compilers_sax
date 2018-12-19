@@ -38,6 +38,6 @@ public class JavaBlyat {
 
 
     public static void main(String[] args) throws IOException {
-        evaluate("minimal.JB");
+        evaluate("test.JB");
     }
 }

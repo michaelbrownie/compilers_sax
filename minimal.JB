@@ -32,4 +32,5 @@ cyka.blyat(inttype);
 cyka.blyat(1);
 cyka.blyat(1 + 1);
 cyka.blyat(1 < 2);
+cyka.blyat("Hello");
 

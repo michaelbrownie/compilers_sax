@@ -66,13 +66,6 @@ public class Scope {
         return stackSize;
     }
 
-    public int countLocals() {
-        int aantal = this.variableMap.size();
-        for(Scope s: this.childList){
-           aantal += s.variableMap.size();
-        }
-        return aantal;
-    }
 
     public void increaseStack(){
         this.stackSize++;

@@ -39,12 +39,19 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     public Object visitProgram(JavaBlyatParser.ProgramContext ctx) {
         printWriter.println("; main() method");
         printWriter.println(".method public static main([Ljava/lang/String;)V");
-        printWriter.println("\t.limit stack " + this.scope.countMaxStack());
-        printWriter.println("\t.limit locals " + this.scope.countLocals());
+        printWriter.println("\t.limit stack " + (this.scope.countMaxStack() + 1) + "\n");
         visitChildren(ctx);
         printWriter.println("\treturn\n" +
                 ".end method");
-        return super.visitProgram(ctx);
+        return null;
+    }
+
+    @Override
+    public Object visitPrintString(JavaBlyatParser.PrintStringContext ctx) {
+        printWriter.println("\tgetstatic java/lang/System/out Ljava/io/PrintStream;");
+        printWriter.println("\tldc "+ ctx.STRING().getText());
+        printWriter.println("\tinvokevirtual java/io/PrintStream/println(Ljava/lang/String;)V" + "\n");
+        return null;
     }
 
     public PrintWriter getPrintWriter() {
