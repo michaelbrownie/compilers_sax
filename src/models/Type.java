@@ -4,6 +4,7 @@ public enum Type {
     STRING,
     INT,
     BOOL,
+    PARENTHESES,
     INVALID;
 
     public static Type getType(String datatype) {

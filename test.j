@@ -8,14 +8,23 @@
 .end method
 
 .method public static main([Ljava/lang/String;)V
-	.limit stack 3
+	.limit stack 13
+	.limit locals 3
 
+	bipush 5
+	istore 0
 	getstatic java/lang/System/out Ljava/io/PrintStream;
-	ldc "Hello dit is een test"
-	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
-
-	getstatic java/lang/System/out Ljava/io/PrintStream;
-	bipush 10
+	iload 0
 	invokevirtual java/io/PrintStream/println(I)V
+	ldc "Seeeh bier"
+	astore 1
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 1
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+	iconst_1
+	istore 2
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 2
+	invokevirtual java/io/PrintStream/println(Z)V
 	return
 .end method

@@ -93,6 +93,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     public Object visitNew_variable_declaration(JavaBlyatParser.New_variable_declarationContext ctx) {
         Symbol symbol = new Symbol(ctx.ID().getText(), Type.getType(ctx.DATATYPES().getText()));
         this.scopeTree.put(ctx, scope);
+        this.scope.increaseStack();
         if(scope.addVariableToScope(symbol)){
             this.variableTree.put(ctx,symbol);
             this.scope.setPosOnSymbol(symbol);
@@ -134,6 +135,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitPrintId(JavaBlyatParser.PrintIdContext ctx) {
         Symbol symbol = this.scope.searchVariable(ctx.ID().getText());
+        this.scope.increaseStack();
         if(symbol != null){
             scopeTree.put(ctx, scope);
             this.scope.increaseStack();
@@ -147,6 +149,20 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         scopeTree.put(ctx, scope);
         this.scope.increaseStack();
         return super.visitPrintString(ctx);
+    }
+
+    @Override
+    public Object visitPrintCalcExpression(JavaBlyatParser.PrintCalcExpressionContext ctx) {
+        scopeTree.put(ctx, scope);
+        this.scope.increaseStack();
+        return super.visitPrintCalcExpression(ctx);
+    }
+
+    @Override
+    public Object visitPrintExpression(JavaBlyatParser.PrintExpressionContext ctx) {
+        scopeTree.put(ctx, scope);
+        this.scope.increaseStack();
+        return super.visitPrintExpression(ctx);
     }
 
     @Override
@@ -178,17 +194,20 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         this.scopeTree.put(ctx, scope);
         Value v = new Value(Type.INT);
         this.valueExpressionTree.put(ctx, v);
+        visitChildren(ctx);
         return Type.INT;
     }
 
     @Override
     public Object visitLiteralExpression(JavaBlyatParser.LiteralExpressionContext ctx) {
         scopeTree.put(ctx, scope);
+        this.scope.increaseStack();
         if (ctx.calc_expression() != null) {
             return visit(ctx.calc_expression());
         }
         return super.visitLiteralExpression(ctx);
     }
+
 
     @Override
     public Object visitLiteralString(JavaBlyatParser.LiteralStringContext ctx) {

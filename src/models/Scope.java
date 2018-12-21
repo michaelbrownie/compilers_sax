@@ -58,10 +58,26 @@ public class Scope {
         }
     }
 
-    public int countMaxStack() {
-        int stackSize = this.stackSize;
+    public int countLocals(){
+        int localSize = this.variableMap.size();
+        int temp = 0;
         for(Scope s: this.childList){
-            stackSize += s.stackSize;
+            temp = s.countLocals();
+            if(temp > localSize){
+                localSize = temp;
+            }
+        }
+        return localSize;
+    }
+
+    public int countMaxStack() {
+        int maxStack = this.stackSize;
+        int temp = 0;
+        for(Scope s: this.childList){
+           temp = s.countMaxStack();
+           if(temp > maxStack){
+               maxStack = temp;
+           }
         }
         return stackSize;
     }

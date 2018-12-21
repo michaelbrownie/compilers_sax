@@ -40,7 +40,7 @@ expression: leftExpression=expression operator=(EQUAL | NOTEQUAL) rightExpressio
 calc_expression: leftExpression=calc_expression operator=(PLUS | MINUS | TIMES | DIVIDE) rightExpression=calc_expression #calcValueExpression
   | literal #literalValueExp;
 
-literal: PARENTHESESLEFT (expression | calc_expression) PARENTHESESRIGHT #literalExpression
+literal: parenthesesleft=PARENTHESESLEFT (expression | calc_expression) parenthesesright=PARENTHESESRIGHT #literalExpression
  | STRING  #literalString
  | INT     #literalInt
  | BOOLEAN #literalBoolean

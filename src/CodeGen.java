@@ -1,6 +1,7 @@
 import models.Scope;
 import models.Symbol;
 import models.Type;
+import models.Value;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
 import java.io.FileNotFoundException;
@@ -16,6 +17,7 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     private ParseTreeProperty scopeTree;
     private ParseTreeProperty variableTree;
     private ParseTreeProperty valueExpressionTree;
+    private Value lastvalExpression;
 
     private PrintWriter printWriter;
 
@@ -41,7 +43,8 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     @Override
     public Object visitProgram(JavaBlyatParser.ProgramContext ctx) {
         printWriter.println(".method public static main([Ljava/lang/String;)V");
-        printWriter.println("\t.limit stack " + (this.scope.countMaxStack() + 1) + "\n"); //Size of the operand stack
+        printWriter.println("\t.limit stack " + (this.scope.countMaxStack() + 1)); //Size of the operand stack
+        printWriter.println("\t.limit locals " + this.scope.countLocals() + "\n"); //Size of the operand stack
         visitChildren(ctx);
         printWriter.println("\treturn\n" + // Terminate method
                 ".end method");
@@ -65,8 +68,83 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     }
 
     @Override
+    public Object visitPrintId(JavaBlyatParser.PrintIdContext ctx) {
+        Scope s = (Scope) scopeTree.get(ctx);
+        Symbol symbol = s.searchVariable(ctx.ID().getText());
+        printWriter.println("\tgetstatic java/lang/System/out Ljava/io/PrintStream;"); // Get printstream
+        this.getVariable(symbol.getType(), symbol.getPos());
+        switch (symbol.getType()){
+            case INT:
+                printWriter.println("\tinvokevirtual java/io/PrintStream/println(I)V"); // Print last index of stack
+                break;
+            case STRING:
+                printWriter.println("\tinvokevirtual java/io/PrintStream/println(Ljava/lang/String;)V"); // Print last string from stack
+                break;
+            case BOOL:
+                printWriter.println("\tinvokevirtual java/io/PrintStream/println(Z)V");
+                break;
+        }
+        return super.visitPrintId(ctx);
+    }
+
+    @Override
     public Object visitCalcValueExpression(JavaBlyatParser.CalcValueExpressionContext ctx) {
-        return super.visitCalcValueExpression(ctx);
+        this.lastvalExpression = (Value) valueExpressionTree.get(ctx);
+        visitChildren(ctx);
+        String operator = ctx.operator.getText();
+        switch (operator){
+            case "*":
+                printWriter.println("\timul"); // Pops the top two integers from the operand stack, multiplies them, and pushes the integer result back onto the stack.
+                break;
+            case "/":
+                printWriter.println("\tidiv"); // Pops the top two integers from the operand stack and divides the second-from top integer (value2) by the top integer (value1), i.e. computes (value2 div value1).
+                break;
+            case "-":
+                printWriter.println("\tisub"); // Pops two ints off the operand stack, subtracts the top one from the second (i.e. computes value2 - value1),
+                break;
+            case "+":
+                printWriter.println("\tiadd"); // Pops two integers from the operand stack, adds them, and pushes the integer result back onto the stack.
+                break;
+        }
+        return null;
+    }
+
+    @Override
+    public Object visitNew_variable(JavaBlyatParser.New_variableContext ctx) {
+        Symbol s = (Symbol) variableTree.get(ctx);
+        visit(ctx.calc_expression());
+        int pos = s.getPos();
+        System.out.println(pos);
+        this.storeVariable(s.getType(),pos);
+        return null;
+    }
+
+    private void storeVariable(Type type, int pos){
+        switch (type){
+            case INT:
+                printWriter.println("\tistore " + pos); // Pops an in off the stack and stores it in local variable <varnum>.
+                break;
+            case STRING:
+                printWriter.println("\tastore " + pos); // Pops objectref (a reference to an object or array) off the stack and stores it in local variable <varnum>.
+                break;
+            case BOOL:
+                printWriter.println("\tistore " + pos); // Pops an in off the stack and stores it in local variable <varnum>.
+                break;
+        }
+    }
+
+    private void getVariable(Type type, int pos){
+        switch (type){
+            case INT:
+                printWriter.println("\tiload " + pos); // Pushes the int value held in a local variable onto the operand stack. The iload instruction takes a single parameter, <varnum>, an unsigned integer which indicates which local variable to use.
+                break;
+            case STRING:
+                printWriter.println("\taload " + pos); // Retrieves an object reference from a local variable and pushes it onto the operand stack.
+                break;
+            case BOOL:
+                printWriter.println("\tiload " + pos); // Pushes the int value held in a local variable onto the operand stack. The iload instruction takes a single parameter, <varnum>, an unsigned integer which indicates which local variable to use.
+                break;
+        }
     }
 
     @Override

@@ -1188,6 +1188,8 @@ public class JavaBlyatParser extends Parser {
 		}
 	}
 	public static class LiteralExpressionContext extends LiteralContext {
+		public Token parenthesesleft;
+		public Token parenthesesright;
 		public TerminalNode PARENTHESESLEFT() { return getToken(JavaBlyatParser.PARENTHESESLEFT, 0); }
 		public TerminalNode PARENTHESESRIGHT() { return getToken(JavaBlyatParser.PARENTHESESRIGHT, 0); }
 		public ExpressionContext expression() {
@@ -1225,7 +1227,7 @@ public class JavaBlyatParser extends Parser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(148);
-				match(PARENTHESESLEFT);
+				((LiteralExpressionContext)_localctx).parenthesesleft = match(PARENTHESESLEFT);
 				setState(151);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
@@ -1243,7 +1245,7 @@ public class JavaBlyatParser extends Parser {
 					break;
 				}
 				setState(153);
-				match(PARENTHESESRIGHT);
+				((LiteralExpressionContext)_localctx).parenthesesright = match(PARENTHESESRIGHT);
 				}
 				break;
 			case STRING:
