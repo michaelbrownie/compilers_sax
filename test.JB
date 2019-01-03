@@ -1,6 +1,10 @@
-intblyat henk = 5;
-cyka.blyat(henk);
-stringblyat michael = "Seeeh bier";
-cyka.blyat(michael);
-booleanblyat kylian = trueblyat;
-cyka.blyat(kylian);
+intblyat henk = 0;
+
+ifblyat(henk != 5){
+
+}
+
+whileblyat(henk != 5){
+    cyka.blyat("hallo");
+    henk++;
+}

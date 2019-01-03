@@ -16,11 +16,11 @@ public class JavaBlyatParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, PLUS=8, MINUS=9, 
-		TIMES=10, DIVIDE=11, EQUAL=12, NOTEQUAL=13, SMALLERTHAN=14, BIGGERTHAN=15, 
-		SMALLERTHANEQUAL=16, BIGGERTHANEQUAL=17, OR=18, AND=19, NOT=20, PARENTHESESLEFT=21, 
-		PARENTHESESRIGHT=22, RETURN=23, SEMICOLON=24, IS=25, DATATYPES=26, STRING=27, 
-		INT=28, BOOLEAN=29, ID=30, WS=31, COMMENT=32;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		PLUS=10, MINUS=11, TIMES=12, DIVIDE=13, EQUAL=14, NOTEQUAL=15, SMALLERTHAN=16, 
+		BIGGERTHAN=17, SMALLERTHANEQUAL=18, BIGGERTHANEQUAL=19, OR=20, AND=21, 
+		NOT=22, PARENTHESESLEFT=23, PARENTHESESRIGHT=24, RETURN=25, SEMICOLON=26, 
+		IS=27, DATATYPES=28, STRING=29, INT=30, BOOLEAN=31, ID=32, WS=33, COMMENT=34;
 	public static final int
 		RULE_program = 0, RULE_statement = 1, RULE_if_statement = 2, RULE_elseif_block = 3, 
 		RULE_else_block = 4, RULE_new_variable = 5, RULE_new_variable_declaration = 6, 
@@ -34,13 +34,13 @@ public class JavaBlyatParser extends Parser {
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'ifblyat'", "'elseifblyat'", "'elseblyat'", "'whileblyat'", "'cyka.blyat('", 
-		"'{'", "'}'", "'+'", "'-'", "'*'", "'/'", "'=='", "'!='", "'<'", "'>'", 
-		"'<='", "'>='", "'||'", "'&&'", "'!'", "'('", "')'", "'returnblyat'", 
+		"'{'", "'}'", "'++'", "'--'", "'+'", "'-'", "'*'", "'/'", "'=='", "'!='", 
+		"'<'", "'>'", "'<='", "'>='", "'||'", "'&&'", "'!'", "'('", "')'", "'returnblyat'", 
 		"';'", "'='"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, "PLUS", "MINUS", "TIMES", 
-		"DIVIDE", "EQUAL", "NOTEQUAL", "SMALLERTHAN", "BIGGERTHAN", "SMALLERTHANEQUAL", 
+		null, null, null, null, null, null, null, null, null, null, "PLUS", "MINUS", 
+		"TIMES", "DIVIDE", "EQUAL", "NOTEQUAL", "SMALLERTHAN", "BIGGERTHAN", "SMALLERTHANEQUAL", 
 		"BIGGERTHANEQUAL", "OR", "AND", "NOT", "PARENTHESESLEFT", "PARENTHESESRIGHT", 
 		"RETURN", "SEMICOLON", "IS", "DATATYPES", "STRING", "INT", "BOOLEAN", 
 		"ID", "WS", "COMMENT"
@@ -123,7 +123,7 @@ public class JavaBlyatParser extends Parser {
 			setState(31);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__4) | (1L << DATATYPES) | (1L << ID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__4) | (1L << PARENTHESESLEFT) | (1L << DATATYPES) | (1L << STRING) | (1L << INT) | (1L << BOOLEAN) | (1L << ID))) != 0)) {
 				{
 				{
 				setState(28);
@@ -165,6 +165,10 @@ public class JavaBlyatParser extends Parser {
 		public While_loopContext while_loop() {
 			return getRuleContext(While_loopContext.class,0);
 		}
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public TerminalNode SEMICOLON() { return getToken(JavaBlyatParser.SEMICOLON, 0); }
 		public PrintContext print() {
 			return getRuleContext(PrintContext.class,0);
 		}
@@ -183,7 +187,7 @@ public class JavaBlyatParser extends Parser {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_statement);
 		try {
-			setState(42);
+			setState(45);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
@@ -225,6 +229,15 @@ public class JavaBlyatParser extends Parser {
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(41);
+				expression(0);
+				setState(42);
+				match(SEMICOLON);
+				}
+				break;
+			case 7:
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(44);
 				print();
 				}
 				break;
@@ -277,36 +290,36 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
-			match(T__0);
-			setState(45);
-			match(PARENTHESESLEFT);
-			setState(46);
-			((If_statementContext)_localctx).expr = expression(0);
 			setState(47);
-			match(PARENTHESESRIGHT);
+			match(T__0);
 			setState(48);
+			match(PARENTHESESLEFT);
+			setState(49);
+			((If_statementContext)_localctx).expr = expression(0);
+			setState(50);
+			match(PARENTHESESRIGHT);
+			setState(51);
 			((If_statementContext)_localctx).statementBlock = statement_block();
-			setState(52);
+			setState(55);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__1) {
 				{
 				{
-				setState(49);
+				setState(52);
 				elseif_block();
 				}
 				}
-				setState(54);
+				setState(57);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(56);
+			setState(59);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__2) {
 				{
-				setState(55);
+				setState(58);
 				else_block();
 				}
 			}
@@ -350,15 +363,15 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(58);
-			match(T__1);
-			setState(59);
-			match(PARENTHESESLEFT);
-			setState(60);
-			((Elseif_blockContext)_localctx).expr = expression(0);
 			setState(61);
-			match(PARENTHESESRIGHT);
+			match(T__1);
 			setState(62);
+			match(PARENTHESESLEFT);
+			setState(63);
+			((Elseif_blockContext)_localctx).expr = expression(0);
+			setState(64);
+			match(PARENTHESESRIGHT);
+			setState(65);
 			((Elseif_blockContext)_localctx).statementBlock = statement_block();
 			}
 		}
@@ -395,9 +408,9 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(64);
+			setState(67);
 			match(T__2);
-			setState(65);
+			setState(68);
 			((Else_blockContext)_localctx).statementBlock = statement_block();
 			}
 		}
@@ -438,15 +451,15 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67);
-			match(DATATYPES);
-			setState(68);
-			match(ID);
-			setState(69);
-			match(IS);
 			setState(70);
-			((New_variableContext)_localctx).expr = calc_expression(0);
+			match(DATATYPES);
 			setState(71);
+			match(ID);
+			setState(72);
+			match(IS);
+			setState(73);
+			((New_variableContext)_localctx).expr = calc_expression(0);
+			setState(74);
 			match(SEMICOLON);
 			}
 		}
@@ -482,11 +495,11 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(73);
+			setState(76);
 			match(DATATYPES);
-			setState(74);
+			setState(77);
 			match(ID);
-			setState(75);
+			setState(78);
 			match(SEMICOLON);
 			}
 		}
@@ -527,13 +540,13 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(77);
-			((Change_variableContext)_localctx).id = match(ID);
-			setState(78);
-			match(IS);
-			setState(79);
-			((Change_variableContext)_localctx).expr = calc_expression(0);
 			setState(80);
+			((Change_variableContext)_localctx).id = match(ID);
+			setState(81);
+			match(IS);
+			setState(82);
+			((Change_variableContext)_localctx).expr = calc_expression(0);
+			setState(83);
 			match(SEMICOLON);
 			}
 		}
@@ -549,6 +562,8 @@ public class JavaBlyatParser extends Parser {
 	}
 
 	public static class While_loopContext extends ParserRuleContext {
+		public ExpressionContext expr;
+		public Statement_blockContext statementBlock;
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -572,16 +587,16 @@ public class JavaBlyatParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(82);
-			match(T__3);
-			setState(83);
-			match(PARENTHESESLEFT);
-			setState(84);
-			expression(0);
 			setState(85);
-			match(PARENTHESESRIGHT);
+			match(T__3);
 			setState(86);
-			statement_block();
+			match(PARENTHESESLEFT);
+			setState(87);
+			((While_loopContext)_localctx).expr = expression(0);
+			setState(88);
+			match(PARENTHESESRIGHT);
+			setState(89);
+			((While_loopContext)_localctx).statementBlock = statement_block();
 			}
 		}
 		catch (RecognitionException re) {
@@ -655,20 +670,20 @@ public class JavaBlyatParser extends Parser {
 		PrintContext _localctx = new PrintContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_print);
 		try {
-			setState(106);
+			setState(109);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
 				_localctx = new PrintIdContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(88);
-				match(T__4);
-				setState(89);
-				match(ID);
-				setState(90);
-				match(PARENTHESESRIGHT);
 				setState(91);
+				match(T__4);
+				setState(92);
+				match(ID);
+				setState(93);
+				match(PARENTHESESRIGHT);
+				setState(94);
 				match(SEMICOLON);
 				}
 				break;
@@ -676,13 +691,13 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new PrintStringContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(92);
-				match(T__4);
-				setState(93);
-				match(STRING);
-				setState(94);
-				match(PARENTHESESRIGHT);
 				setState(95);
+				match(T__4);
+				setState(96);
+				match(STRING);
+				setState(97);
+				match(PARENTHESESRIGHT);
+				setState(98);
 				match(SEMICOLON);
 				}
 				break;
@@ -690,13 +705,13 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new PrintCalcExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(96);
-				match(T__4);
-				setState(97);
-				calc_expression(0);
-				setState(98);
-				match(PARENTHESESRIGHT);
 				setState(99);
+				match(T__4);
+				setState(100);
+				calc_expression(0);
+				setState(101);
+				match(PARENTHESESRIGHT);
+				setState(102);
 				match(SEMICOLON);
 				}
 				break;
@@ -704,13 +719,13 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new PrintExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(101);
-				match(T__4);
-				setState(102);
-				expression(0);
-				setState(103);
-				match(PARENTHESESRIGHT);
 				setState(104);
+				match(T__4);
+				setState(105);
+				expression(0);
+				setState(106);
+				match(PARENTHESESRIGHT);
+				setState(107);
 				match(SEMICOLON);
 				}
 				break;
@@ -761,23 +776,23 @@ public class JavaBlyatParser extends Parser {
 			_localctx = new StatementBlockContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(108);
+			setState(111);
 			match(T__5);
-			setState(112);
+			setState(115);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__4) | (1L << DATATYPES) | (1L << ID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__4) | (1L << PARENTHESESLEFT) | (1L << DATATYPES) | (1L << STRING) | (1L << INT) | (1L << BOOLEAN) | (1L << ID))) != 0)) {
 				{
 				{
-				setState(109);
+				setState(112);
 				statement();
 				}
 				}
-				setState(114);
+				setState(117);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(115);
+			setState(118);
 			match(T__6);
 			}
 		}
@@ -835,20 +850,6 @@ public class JavaBlyatParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class NotExpressionContext extends ExpressionContext {
-		public Token operator;
-		public ExpressionContext rightExpression;
-		public TerminalNode NOT() { return getToken(JavaBlyatParser.NOT, 0); }
-		public ExpressionContext expression() {
-			return getRuleContext(ExpressionContext.class,0);
-		}
-		public NotExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitNotExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class EqualExpressionsContext extends ExpressionContext {
 		public ExpressionContext leftExpression;
 		public Token operator;
@@ -887,6 +888,19 @@ public class JavaBlyatParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class PlusplusAndminminExpressionsContext extends ExpressionContext {
+		public ExpressionContext leftExpression;
+		public Token operator;
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
+		}
+		public PlusplusAndminminExpressionsContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JavaBlyatVisitor ) return ((JavaBlyatVisitor<? extends T>)visitor).visitPlusplusAndminminExpressions(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 
 	public final ExpressionContext expression() throws RecognitionException {
 		return expression(0);
@@ -904,49 +918,26 @@ public class JavaBlyatParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(121);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case NOT:
-				{
-				_localctx = new NotExpressionContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
+			{
+			_localctx = new LiteralExprContext(_localctx);
+			_ctx = _localctx;
+			_prevctx = _localctx;
 
-				setState(118);
-				((NotExpressionContext)_localctx).operator = match(NOT);
-				setState(119);
-				((NotExpressionContext)_localctx).rightExpression = expression(2);
-				}
-				break;
-			case PARENTHESESLEFT:
-			case STRING:
-			case INT:
-			case BOOLEAN:
-			case ID:
-				{
-				_localctx = new LiteralExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(120);
-				literal();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			setState(121);
+			literal();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(134);
+			setState(136);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(132);
+					setState(134);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 					case 1:
 						{
 						_localctx = new EqualExpressionsContext(new ExpressionContext(_parentctx, _parentState));
@@ -1013,12 +1004,32 @@ public class JavaBlyatParser extends Parser {
 						((OrAndandExpressionsContext)_localctx).rightExpression = expression(4);
 						}
 						break;
+					case 4:
+						{
+						_localctx = new PlusplusAndminminExpressionsContext(new ExpressionContext(_parentctx, _parentState));
+						((PlusplusAndminminExpressionsContext)_localctx).leftExpression = _prevctx;
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
+						setState(132);
+						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						setState(133);
+						((PlusplusAndminminExpressionsContext)_localctx).operator = _input.LT(1);
+						_la = _input.LA(1);
+						if ( !(_la==T__7 || _la==T__8) ) {
+							((PlusplusAndminminExpressionsContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
+						}
+						else {
+							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+							_errHandler.reportMatch(this);
+							consume();
+						}
+						}
+						break;
 					}
 					} 
 				}
-				setState(136);
+				setState(138);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 			}
 			}
 		}
@@ -1098,13 +1109,13 @@ public class JavaBlyatParser extends Parser {
 			_ctx = _localctx;
 			_prevctx = _localctx;
 
-			setState(138);
+			setState(140);
 			literal();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(145);
+			setState(147);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -1114,9 +1125,9 @@ public class JavaBlyatParser extends Parser {
 					_localctx = new CalcValueExpressionContext(new Calc_expressionContext(_parentctx, _parentState));
 					((CalcValueExpressionContext)_localctx).leftExpression = _prevctx;
 					pushNewRecursionContext(_localctx, _startState, RULE_calc_expression);
-					setState(140);
+					setState(142);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(141);
+					setState(143);
 					((CalcValueExpressionContext)_localctx).operator = _input.LT(1);
 					_la = _input.LA(1);
 					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << TIMES) | (1L << DIVIDE))) != 0)) ) {
@@ -1127,14 +1138,14 @@ public class JavaBlyatParser extends Parser {
 						_errHandler.reportMatch(this);
 						consume();
 					}
-					setState(142);
+					setState(144);
 					((CalcValueExpressionContext)_localctx).rightExpression = calc_expression(3);
 					}
 					} 
 				}
-				setState(147);
+				setState(149);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 			}
 			}
 		}
@@ -1219,32 +1230,32 @@ public class JavaBlyatParser extends Parser {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
 		enterRule(_localctx, 26, RULE_literal);
 		try {
-			setState(159);
+			setState(161);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PARENTHESESLEFT:
 				_localctx = new LiteralExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(148);
+				setState(150);
 				((LiteralExpressionContext)_localctx).parenthesesleft = match(PARENTHESESLEFT);
-				setState(151);
+				setState(153);
 				_errHandler.sync(this);
-				switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+				switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 				case 1:
 					{
-					setState(149);
+					setState(151);
 					expression(0);
 					}
 					break;
 				case 2:
 					{
-					setState(150);
+					setState(152);
 					calc_expression(0);
 					}
 					break;
 				}
-				setState(153);
+				setState(155);
 				((LiteralExpressionContext)_localctx).parenthesesright = match(PARENTHESESRIGHT);
 				}
 				break;
@@ -1252,7 +1263,7 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new LiteralStringContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(155);
+				setState(157);
 				match(STRING);
 				}
 				break;
@@ -1260,7 +1271,7 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new LiteralIntContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(156);
+				setState(158);
 				match(INT);
 				}
 				break;
@@ -1268,7 +1279,7 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new LiteralBooleanContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(157);
+				setState(159);
 				match(BOOLEAN);
 				}
 				break;
@@ -1276,7 +1287,7 @@ public class JavaBlyatParser extends Parser {
 				_localctx = new LiteralIdContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(158);
+				setState(160);
 				match(ID);
 				}
 				break;
@@ -1312,65 +1323,68 @@ public class JavaBlyatParser extends Parser {
 			return precpred(_ctx, 4);
 		case 2:
 			return precpred(_ctx, 3);
+		case 3:
+			return precpred(_ctx, 2);
 		}
 		return true;
 	}
 	private boolean calc_expression_sempred(Calc_expressionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 3:
+		case 4:
 			return precpred(_ctx, 2);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\"\u00a4\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3$\u00a6\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\7\2 \n\2\f\2\16\2#\13\2\3"+
-		"\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3-\n\3\3\4\3\4\3\4\3\4\3\4\3\4\7\4\65"+
-		"\n\4\f\4\16\48\13\4\3\4\5\4;\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3"+
-		"\7\3\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n"+
-		"\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3"+
-		"\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13m\n\13\3\f\3\f\7\fq\n\f\f\f\16\f"+
-		"t\13\f\3\f\3\f\3\r\3\r\3\r\3\r\5\r|\n\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3"+
-		"\r\3\r\7\r\u0087\n\r\f\r\16\r\u008a\13\r\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\7\16\u0092\n\16\f\16\16\16\u0095\13\16\3\17\3\17\3\17\5\17\u009a\n\17"+
-		"\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u00a2\n\17\3\17\2\4\30\32\20\2\4\6"+
-		"\b\n\f\16\20\22\24\26\30\32\34\2\6\3\2\16\17\3\2\20\23\3\2\24\25\3\2\n"+
-		"\r\2\u00ab\2!\3\2\2\2\4,\3\2\2\2\6.\3\2\2\2\b<\3\2\2\2\nB\3\2\2\2\fE\3"+
-		"\2\2\2\16K\3\2\2\2\20O\3\2\2\2\22T\3\2\2\2\24l\3\2\2\2\26n\3\2\2\2\30"+
-		"{\3\2\2\2\32\u008b\3\2\2\2\34\u00a1\3\2\2\2\36 \5\4\3\2\37\36\3\2\2\2"+
-		" #\3\2\2\2!\37\3\2\2\2!\"\3\2\2\2\"$\3\2\2\2#!\3\2\2\2$%\7\2\2\3%\3\3"+
-		"\2\2\2&-\5\6\4\2\'-\5\f\7\2(-\5\16\b\2)-\5\20\t\2*-\5\22\n\2+-\5\24\13"+
-		"\2,&\3\2\2\2,\'\3\2\2\2,(\3\2\2\2,)\3\2\2\2,*\3\2\2\2,+\3\2\2\2-\5\3\2"+
-		"\2\2./\7\3\2\2/\60\7\27\2\2\60\61\5\30\r\2\61\62\7\30\2\2\62\66\5\26\f"+
-		"\2\63\65\5\b\5\2\64\63\3\2\2\2\658\3\2\2\2\66\64\3\2\2\2\66\67\3\2\2\2"+
-		"\67:\3\2\2\28\66\3\2\2\29;\5\n\6\2:9\3\2\2\2:;\3\2\2\2;\7\3\2\2\2<=\7"+
-		"\4\2\2=>\7\27\2\2>?\5\30\r\2?@\7\30\2\2@A\5\26\f\2A\t\3\2\2\2BC\7\5\2"+
-		"\2CD\5\26\f\2D\13\3\2\2\2EF\7\34\2\2FG\7 \2\2GH\7\33\2\2HI\5\32\16\2I"+
-		"J\7\32\2\2J\r\3\2\2\2KL\7\34\2\2LM\7 \2\2MN\7\32\2\2N\17\3\2\2\2OP\7 "+
-		"\2\2PQ\7\33\2\2QR\5\32\16\2RS\7\32\2\2S\21\3\2\2\2TU\7\6\2\2UV\7\27\2"+
-		"\2VW\5\30\r\2WX\7\30\2\2XY\5\26\f\2Y\23\3\2\2\2Z[\7\7\2\2[\\\7 \2\2\\"+
-		"]\7\30\2\2]m\7\32\2\2^_\7\7\2\2_`\7\35\2\2`a\7\30\2\2am\7\32\2\2bc\7\7"+
-		"\2\2cd\5\32\16\2de\7\30\2\2ef\7\32\2\2fm\3\2\2\2gh\7\7\2\2hi\5\30\r\2"+
-		"ij\7\30\2\2jk\7\32\2\2km\3\2\2\2lZ\3\2\2\2l^\3\2\2\2lb\3\2\2\2lg\3\2\2"+
-		"\2m\25\3\2\2\2nr\7\b\2\2oq\5\4\3\2po\3\2\2\2qt\3\2\2\2rp\3\2\2\2rs\3\2"+
-		"\2\2su\3\2\2\2tr\3\2\2\2uv\7\t\2\2v\27\3\2\2\2wx\b\r\1\2xy\7\26\2\2y|"+
-		"\5\30\r\4z|\5\34\17\2{w\3\2\2\2{z\3\2\2\2|\u0088\3\2\2\2}~\f\7\2\2~\177"+
-		"\t\2\2\2\177\u0087\5\30\r\b\u0080\u0081\f\6\2\2\u0081\u0082\t\3\2\2\u0082"+
-		"\u0087\5\30\r\7\u0083\u0084\f\5\2\2\u0084\u0085\t\4\2\2\u0085\u0087\5"+
-		"\30\r\6\u0086}\3\2\2\2\u0086\u0080\3\2\2\2\u0086\u0083\3\2\2\2\u0087\u008a"+
-		"\3\2\2\2\u0088\u0086\3\2\2\2\u0088\u0089\3\2\2\2\u0089\31\3\2\2\2\u008a"+
-		"\u0088\3\2\2\2\u008b\u008c\b\16\1\2\u008c\u008d\5\34\17\2\u008d\u0093"+
-		"\3\2\2\2\u008e\u008f\f\4\2\2\u008f\u0090\t\5\2\2\u0090\u0092\5\32\16\5"+
-		"\u0091\u008e\3\2\2\2\u0092\u0095\3\2\2\2\u0093\u0091\3\2\2\2\u0093\u0094"+
-		"\3\2\2\2\u0094\33\3\2\2\2\u0095\u0093\3\2\2\2\u0096\u0099\7\27\2\2\u0097"+
-		"\u009a\5\30\r\2\u0098\u009a\5\32\16\2\u0099\u0097\3\2\2\2\u0099\u0098"+
-		"\3\2\2\2\u009a\u009b\3\2\2\2\u009b\u009c\7\30\2\2\u009c\u00a2\3\2\2\2"+
-		"\u009d\u00a2\7\35\2\2\u009e\u00a2\7\36\2\2\u009f\u00a2\7\37\2\2\u00a0"+
-		"\u00a2\7 \2\2\u00a1\u0096\3\2\2\2\u00a1\u009d\3\2\2\2\u00a1\u009e\3\2"+
-		"\2\2\u00a1\u009f\3\2\2\2\u00a1\u00a0\3\2\2\2\u00a2\35\3\2\2\2\16!,\66"+
-		":lr{\u0086\u0088\u0093\u0099\u00a1";
+		"\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\60\n\3\3\4\3\4\3\4\3\4"+
+		"\3\4\3\4\7\48\n\4\f\4\16\4;\13\4\3\4\5\4>\n\4\3\5\3\5\3\5\3\5\3\5\3\5"+
+		"\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3"+
+		"\t\3\n\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13"+
+		"\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13p\n\13\3\f\3\f\7\ft"+
+		"\n\f\f\f\16\fw\13\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3"+
+		"\r\3\r\3\r\3\r\7\r\u0089\n\r\f\r\16\r\u008c\13\r\3\16\3\16\3\16\3\16\3"+
+		"\16\3\16\7\16\u0094\n\16\f\16\16\16\u0097\13\16\3\17\3\17\3\17\5\17\u009c"+
+		"\n\17\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u00a4\n\17\3\17\2\4\30\32\20"+
+		"\2\4\6\b\n\f\16\20\22\24\26\30\32\34\2\7\3\2\20\21\3\2\22\25\3\2\26\27"+
+		"\3\2\n\13\3\2\f\17\2\u00ae\2!\3\2\2\2\4/\3\2\2\2\6\61\3\2\2\2\b?\3\2\2"+
+		"\2\nE\3\2\2\2\fH\3\2\2\2\16N\3\2\2\2\20R\3\2\2\2\22W\3\2\2\2\24o\3\2\2"+
+		"\2\26q\3\2\2\2\30z\3\2\2\2\32\u008d\3\2\2\2\34\u00a3\3\2\2\2\36 \5\4\3"+
+		"\2\37\36\3\2\2\2 #\3\2\2\2!\37\3\2\2\2!\"\3\2\2\2\"$\3\2\2\2#!\3\2\2\2"+
+		"$%\7\2\2\3%\3\3\2\2\2&\60\5\6\4\2\'\60\5\f\7\2(\60\5\16\b\2)\60\5\20\t"+
+		"\2*\60\5\22\n\2+,\5\30\r\2,-\7\34\2\2-\60\3\2\2\2.\60\5\24\13\2/&\3\2"+
+		"\2\2/\'\3\2\2\2/(\3\2\2\2/)\3\2\2\2/*\3\2\2\2/+\3\2\2\2/.\3\2\2\2\60\5"+
+		"\3\2\2\2\61\62\7\3\2\2\62\63\7\31\2\2\63\64\5\30\r\2\64\65\7\32\2\2\65"+
+		"9\5\26\f\2\668\5\b\5\2\67\66\3\2\2\28;\3\2\2\29\67\3\2\2\29:\3\2\2\2:"+
+		"=\3\2\2\2;9\3\2\2\2<>\5\n\6\2=<\3\2\2\2=>\3\2\2\2>\7\3\2\2\2?@\7\4\2\2"+
+		"@A\7\31\2\2AB\5\30\r\2BC\7\32\2\2CD\5\26\f\2D\t\3\2\2\2EF\7\5\2\2FG\5"+
+		"\26\f\2G\13\3\2\2\2HI\7\36\2\2IJ\7\"\2\2JK\7\35\2\2KL\5\32\16\2LM\7\34"+
+		"\2\2M\r\3\2\2\2NO\7\36\2\2OP\7\"\2\2PQ\7\34\2\2Q\17\3\2\2\2RS\7\"\2\2"+
+		"ST\7\35\2\2TU\5\32\16\2UV\7\34\2\2V\21\3\2\2\2WX\7\6\2\2XY\7\31\2\2YZ"+
+		"\5\30\r\2Z[\7\32\2\2[\\\5\26\f\2\\\23\3\2\2\2]^\7\7\2\2^_\7\"\2\2_`\7"+
+		"\32\2\2`p\7\34\2\2ab\7\7\2\2bc\7\37\2\2cd\7\32\2\2dp\7\34\2\2ef\7\7\2"+
+		"\2fg\5\32\16\2gh\7\32\2\2hi\7\34\2\2ip\3\2\2\2jk\7\7\2\2kl\5\30\r\2lm"+
+		"\7\32\2\2mn\7\34\2\2np\3\2\2\2o]\3\2\2\2oa\3\2\2\2oe\3\2\2\2oj\3\2\2\2"+
+		"p\25\3\2\2\2qu\7\b\2\2rt\5\4\3\2sr\3\2\2\2tw\3\2\2\2us\3\2\2\2uv\3\2\2"+
+		"\2vx\3\2\2\2wu\3\2\2\2xy\7\t\2\2y\27\3\2\2\2z{\b\r\1\2{|\5\34\17\2|\u008a"+
+		"\3\2\2\2}~\f\7\2\2~\177\t\2\2\2\177\u0089\5\30\r\b\u0080\u0081\f\6\2\2"+
+		"\u0081\u0082\t\3\2\2\u0082\u0089\5\30\r\7\u0083\u0084\f\5\2\2\u0084\u0085"+
+		"\t\4\2\2\u0085\u0089\5\30\r\6\u0086\u0087\f\4\2\2\u0087\u0089\t\5\2\2"+
+		"\u0088}\3\2\2\2\u0088\u0080\3\2\2\2\u0088\u0083\3\2\2\2\u0088\u0086\3"+
+		"\2\2\2\u0089\u008c\3\2\2\2\u008a\u0088\3\2\2\2\u008a\u008b\3\2\2\2\u008b"+
+		"\31\3\2\2\2\u008c\u008a\3\2\2\2\u008d\u008e\b\16\1\2\u008e\u008f\5\34"+
+		"\17\2\u008f\u0095\3\2\2\2\u0090\u0091\f\4\2\2\u0091\u0092\t\6\2\2\u0092"+
+		"\u0094\5\32\16\5\u0093\u0090\3\2\2\2\u0094\u0097\3\2\2\2\u0095\u0093\3"+
+		"\2\2\2\u0095\u0096\3\2\2\2\u0096\33\3\2\2\2\u0097\u0095\3\2\2\2\u0098"+
+		"\u009b\7\31\2\2\u0099\u009c\5\30\r\2\u009a\u009c\5\32\16\2\u009b\u0099"+
+		"\3\2\2\2\u009b\u009a\3\2\2\2\u009c\u009d\3\2\2\2\u009d\u009e\7\32\2\2"+
+		"\u009e\u00a4\3\2\2\2\u009f\u00a4\7\37\2\2\u00a0\u00a4\7 \2\2\u00a1\u00a4"+
+		"\7!\2\2\u00a2\u00a4\7\"\2\2\u00a3\u0098\3\2\2\2\u00a3\u009f\3\2\2\2\u00a3"+
+		"\u00a0\3\2\2\2\u00a3\u00a1\3\2\2\2\u00a3\u00a2\3\2\2\2\u00a4\35\3\2\2"+
+		"\2\r!/9=ou\u0088\u008a\u0095\u009b\u00a3";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

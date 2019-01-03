@@ -41,6 +41,12 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     }
 
     @Override
+    public Object visitStatementBlock(JavaBlyatParser.StatementBlockContext ctx) {
+        visitChildren(ctx);
+        return null;
+    }
+
+    @Override
     public Object visitProgram(JavaBlyatParser.ProgramContext ctx) {
         printWriter.println(".method public static main([Ljava/lang/String;)V");
         printWriter.println("\t.limit stack " + (this.scope.countMaxStack() + 1)); //Size of the operand stack
@@ -114,9 +120,99 @@ public class CodeGen extends JavaBlyatBaseVisitor {
         Symbol s = (Symbol) variableTree.get(ctx);
         visit(ctx.calc_expression());
         int pos = s.getPos();
-        System.out.println(pos);
         this.storeVariable(s.getType(),pos);
         return null;
+    }
+
+    @Override
+    public Object visitChange_variable(JavaBlyatParser.Change_variableContext ctx) {
+        Symbol s = (Symbol) variableTree.get(ctx);
+        visit(ctx.calc_expression());
+        int pos = s.getPos();
+        this.storeVariable(s.getType(),pos);
+        return super.visitChange_variable(ctx);
+    }
+
+    @Override
+    public Object visitIf_statement(JavaBlyatParser.If_statementContext ctx) {
+        visitChildren(ctx.expression());
+        return null;
+    }
+
+    @Override
+    public Object visitWhile_loop(JavaBlyatParser.While_loopContext ctx) {
+        Scope s = (Scope) scopeTree.get(ctx.statement_block());
+        printWriter.println("\t" + s.getTitle() + ":");
+        visitChildren(ctx.expression());
+        printWriter.println(s.getTitle() + "_end");
+        visitChildren(ctx.statement_block());
+        printWriter.println("\tgoto " + s.getTitle());
+        printWriter.println("\t" + s.getTitle() + "_end:");
+        return null;
+    }
+
+    @Override
+    public Object visitLiteralValueExp(JavaBlyatParser.LiteralValueExpContext ctx) {
+        visitChildren(ctx);
+        return null;
+    }
+
+    @Override
+    public Object visitEqualExpressions(JavaBlyatParser.EqualExpressionsContext ctx) {
+        visitChildren(ctx.leftExpression);
+        visitChildren(ctx.rightExpression);
+        System.out.println("CodeGen.visitEqualExpressions");
+        this.expressionHelper(ctx.operator.getText());
+        return null;
+    }
+
+    @Override
+    public Object visitCompareExpressions(JavaBlyatParser.CompareExpressionsContext ctx) {
+        visitChildren(ctx.leftExpression);
+        visitChildren(ctx.rightExpression);
+        this.expressionHelper(ctx.operator.getText());
+        return null;
+    }
+
+    @Override
+    public Object visitOrAndandExpressions(JavaBlyatParser.OrAndandExpressionsContext ctx) {
+        visitChildren(ctx.leftExpression);
+        visitChildren(ctx.rightExpression);
+        this.expressionHelper(ctx.operator.getText());
+        return null;
+    }
+
+
+    public void expressionHelper(String expression){
+        switch(expression){
+            case "!=":
+                printWriter.println("\tif_icmpeq ");
+                break;
+            case "==":
+                printWriter.println("\tif_icmpne ");
+                break;
+            case ">":
+                printWriter.println("\tif_icmple ");
+                break;
+            case "<":
+                printWriter.println("\tif_icmpge ");
+                break;
+            case "<=":
+                printWriter.println("\tif_icmpgt ");
+                break;
+            case ">=":
+                printWriter.println("\tif_icmplt ");
+                break;
+            case "||":
+                printWriter.println("\tior ");
+                break;
+            case "&&":
+                printWriter.println("\tiand ");
+                break;
+            case "!":
+                printWriter.println("\tifnonnull ");
+                break;
+        }
     }
 
     private void storeVariable(Type type, int pos){
@@ -145,6 +241,22 @@ public class CodeGen extends JavaBlyatBaseVisitor {
                 printWriter.println("\tiload " + pos); // Pushes the int value held in a local variable onto the operand stack. The iload instruction takes a single parameter, <varnum>, an unsigned integer which indicates which local variable to use.
                 break;
         }
+    }
+
+    @Override
+    public Object visitPlusplusAndminminExpressions(JavaBlyatParser.PlusplusAndminminExpressionsContext ctx) {
+        Symbol s = (Symbol) variableTree.get(ctx);
+        if(s.getType() == Type.INT){
+            switch (ctx.operator.getText()){
+                case "++":
+                    printWriter.println("\tiinc " + s.getPos() + " 1");
+                    break;
+                case "--":
+                    printWriter.println("\tiinc " + s.getPos() + " -1");
+                    break;
+            }
+        }
+        return super.visitPlusplusAndminminExpressions(ctx);
     }
 
     @Override
@@ -178,7 +290,9 @@ public class CodeGen extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitLiteralId(JavaBlyatParser.LiteralIdContext ctx) {
-        return super.visitLiteralId(ctx);
+        Symbol symbol = scope.searchVariable(ctx.ID().getText());
+        this.getVariable(symbol.getType(), symbol.getPos());
+        return symbol.getType();
     }
 
     public PrintWriter getPrintWriter() {

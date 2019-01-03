@@ -5,7 +5,8 @@ public enum Type {
     INT,
     BOOL,
     PARENTHESES,
-    INVALID;
+    INVALID,
+    ID;
 
     public static Type getType(String datatype) {
         switch (datatype) {

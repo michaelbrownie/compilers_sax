@@ -102,4 +102,8 @@ public class Scope {
     public Scope getParent() {
         return this.parent;
     }
+
+    public String getTitle() {
+        return title;
+    }
 }

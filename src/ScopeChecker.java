@@ -13,18 +13,31 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
 
     private Scope scope;
 
-    private int scope_count_method = 0;
     private int count_if_blocks_name = 0;
     private int count_else_if_blocks_name = 0;
     private int count_else_blocks_name = 0;
     private int count_while_blocks_name = 0;
 
 
+    private String lastUsedScopeName;
+
+
     public ScopeChecker() {
         this.scopeTree = new ParseTreeProperty();
         this.variableTree = new ParseTreeProperty();
         this.valueExpressionTree = new ParseTreeProperty();
-        this.scope = new Scope("method_" + scope_count_method);
+        this.scope = new Scope("begin_1");
+    }
+
+    @Override
+    public Object visitStatementBlock(JavaBlyatParser.StatementBlockContext ctx) {
+        this.scopeTree.put(ctx, this.scope);
+        Scope s = this.scope.createChildScope(lastUsedScopeName);
+        this.scope = s;
+        this.scope.getParent().addChild(this.scope);
+        visitChildren(ctx);
+        this.scope = this.scope.closeChildScope();
+        return null;
     }
 
     @Override
@@ -103,6 +116,20 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     }
 
     @Override
+    public Object visitPlusplusAndminminExpressions(JavaBlyatParser.PlusplusAndminminExpressionsContext ctx) {
+        this.scopeTree.put(ctx,scope);
+        Symbol s = scope.searchVariable(ctx.leftExpression.getText());
+        this.variableTree.put(ctx, s);
+        if(s != null){
+            Value value = new Value(Type.INT);
+            valueExpressionTree.put(ctx, value);
+            scope.increaseStack();
+            return Type.INT;
+        }
+        throw new RuntimeException("Variable " + ctx.leftExpression.getText() + " not found!");
+    }
+
+    @Override
     public Object visitChange_variable(JavaBlyatParser.Change_variableContext ctx) {
         Symbol symbol = scope.searchVariable(ctx.id.getText());
         this.scopeTree.put(ctx,scope);
@@ -120,14 +147,15 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitWhile_loop(JavaBlyatParser.While_loopContext ctx) {
         count_while_blocks_name++;
-        Scope scope = this.scope.createChildScope("while_" + this.count_while_blocks_name);
+        lastUsedScopeName = "while_" + count_while_blocks_name;
+        Scope scope = this.scope.createChildScope(lastUsedScopeName);
         this.scope = scope;
         this.scope.getParent().addChild(this.scope);
         this.scopeTree.put(ctx, this.scope);
         if(visit(ctx.expression()) == Type.BOOL){
             visit(ctx.statement_block());
             this.scope = this.scope.closeChildScope();
-            return null;
+            return Type.BOOL;
         }
         throw new RuntimeException("Whileblyat loop does not contain a comparison or a boolean.");
     }
@@ -143,6 +171,8 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         }
         throw new RuntimeException("The variable" + ctx.ID().getText() + " does not exist in the current scope!");
     }
+
+
 
     @Override
     public Object visitPrintString(JavaBlyatParser.PrintStringContext ctx) {
@@ -168,24 +198,24 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitCompareExpressions(JavaBlyatParser.CompareExpressionsContext ctx) {
         this.scopeTree.put(ctx, scope);
+        visitChildren(ctx.leftExpression);
+        visitChildren(ctx.rightExpression);
         return Type.BOOL;
-    }
-
-    @Override
-    public Object visitNotExpression(JavaBlyatParser.NotExpressionContext ctx) {
-        this.scopeTree.put(ctx, scope);
-        return super.visitNotExpression(ctx);
     }
 
     @Override
     public Object visitEqualExpressions(JavaBlyatParser.EqualExpressionsContext ctx) {
         this.scopeTree.put(ctx, scope);
+        visitChildren(ctx.leftExpression);
+        visitChildren(ctx.rightExpression);
         return Type.BOOL;
     }
 
     @Override
     public Object visitOrAndandExpressions(JavaBlyatParser.OrAndandExpressionsContext ctx) {
         this.scopeTree.put(ctx, scope);
+        visitChildren(ctx.leftExpression);
+        visitChildren(ctx.rightExpression);
         return super.visitOrAndandExpressions(ctx);
     }
 
@@ -205,9 +235,14 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         if (ctx.calc_expression() != null) {
             return visit(ctx.calc_expression());
         }
-        return super.visitLiteralExpression(ctx);
+        return visit(ctx.expression());
     }
 
+    @Override
+    public Object visitLiteralExpr(JavaBlyatParser.LiteralExprContext ctx) {
+        scopeTree.put(ctx, scope);
+        return super.visitLiteralExpr(ctx);
+    }
 
     @Override
     public Object visitLiteralString(JavaBlyatParser.LiteralStringContext ctx) {
@@ -232,8 +267,8 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitLiteralId(JavaBlyatParser.LiteralIdContext ctx) {
-        Symbol symbol = this.scope.searchVariable(ctx.ID().getText());
         this.scopeTree.put(ctx, scope);
+        Symbol symbol = this.scope.searchVariable(ctx.ID().getText());
         if(symbol != null){
             return symbol.getType();
         }

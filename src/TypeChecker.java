@@ -49,7 +49,11 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitCalcValueExpression(JavaBlyatParser.CalcValueExpressionContext ctx) {
         if(ctx.operator.getText().equals("+") || ctx.operator.getText().equals("-") || ctx.operator.getText().equals("*") || ctx.operator.getText().equals("/")){
-            if (visit(ctx.leftExpression) == Type.INT && visit(ctx.rightExpression) == Type.INT || visit(ctx.leftExpression) == Type.PARENTHESES && visit(ctx.rightExpression) == Type.PARENTHESES) {
+            if (visit(ctx.leftExpression) == Type.INT && visit(ctx.rightExpression) == Type.INT
+                    || visit(ctx.leftExpression) == Type.PARENTHESES && visit(ctx.rightExpression) == Type.PARENTHESES
+                    || visit(ctx.leftExpression) == Type.ID && visit(ctx.rightExpression) == Type.INT
+                    || visit(ctx.leftExpression) == Type.INT && visit(ctx.rightExpression) == Type.ID
+            ) {
                 return Type.INT;
             } else {
                 throw new RuntimeException("You cant use the operator "+ ctx.operator.getText() + " with " + visit(ctx.leftExpression) + " and " + visit(ctx.rightExpression));
@@ -59,7 +63,7 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
     }
 
     private boolean compare(Type left, Type right){
-        if(left == Type.INT && right == Type.INT || left == Type.BOOL && right == Type.BOOL){
+        if(left == Type.INT && right == Type.INT || left == Type.BOOL && right == Type.BOOL || left == Type.ID && right == Type.INT || left == Type.INT && right == Type.ID){
             return true;
         }
         return false;
@@ -85,5 +89,8 @@ public class TypeChecker extends JavaBlyatBaseVisitor {
         return Type.BOOL;
     }
 
-
+    @Override
+    public Object visitLiteralId(JavaBlyatParser.LiteralIdContext ctx) {
+        return Type.ID;
+    }
 }

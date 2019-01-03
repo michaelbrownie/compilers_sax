@@ -8,6 +8,7 @@ statement: if_statement
          | new_variable_declaration
          | change_variable
          | while_loop
+         | expression SEMICOLON
          | print;
 
 //IF statement
@@ -21,7 +22,7 @@ new_variable_declaration: DATATYPES ID SEMICOLON;
 change_variable: id=ID IS expr=calc_expression SEMICOLON;
 
 //While loop
-while_loop: 'whileblyat' '(' expression ')' statement_block;
+while_loop: 'whileblyat' '(' expr=expression ')' statementBlock=statement_block;
 
 //Print
 print: 'cyka.blyat(' ID ')' SEMICOLON #printId
@@ -34,7 +35,7 @@ statement_block: '{' statement* '}' #statementBlock;
 expression: leftExpression=expression operator=(EQUAL | NOTEQUAL) rightExpression=expression #equalExpressions
            | leftExpression=expression operator=(SMALLERTHAN | BIGGERTHAN | SMALLERTHANEQUAL | BIGGERTHANEQUAL) rightExpression=expression #compareExpressions
            | leftExpression=expression operator=(OR | AND) rightExpression=expression #orAndandExpressions
-           | operator=NOT rightExpression=expression #notExpression
+           | leftExpression=expression operator=('++' | '--') #plusplusAndminminExpressions
            | literal #literalExpr;
 
 calc_expression: leftExpression=calc_expression operator=(PLUS | MINUS | TIMES | DIVIDE) rightExpression=calc_expression #calcValueExpression

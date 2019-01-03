@@ -113,13 +113,6 @@ public interface JavaBlyatVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLiteralExpr(JavaBlyatParser.LiteralExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code notExpression}
-	 * labeled alternative in {@link JavaBlyatParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNotExpression(JavaBlyatParser.NotExpressionContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code equalExpressions}
 	 * labeled alternative in {@link JavaBlyatParser#expression}.
 	 * @param ctx the parse tree
@@ -133,6 +126,13 @@ public interface JavaBlyatVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOrAndandExpressions(JavaBlyatParser.OrAndandExpressionsContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code plusplusAndminminExpressions}
+	 * labeled alternative in {@link JavaBlyatParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPlusplusAndminminExpressions(JavaBlyatParser.PlusplusAndminminExpressionsContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code literalValueExp}
 	 * labeled alternative in {@link JavaBlyatParser#calc_expression}.
