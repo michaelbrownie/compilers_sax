@@ -8,24 +8,26 @@
 .end method
 
 .method public static main([Ljava/lang/String;)V
-	.limit stack 3
-	.limit locals 1
+	.limit stack 7
+	.limit locals 2
 
 	bipush 0
 	istore 0
-	iload 0
-	bipush 5
 	while_1:
 	iload 0
 	bipush 5
-while_1_end
+	if_icmpeq while_1_end
 	getstatic java/lang/System/out Ljava/io/PrintStream;
-	ldc "hallo"
+	ldc "Henk"
 	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 
 	iinc 0 1
-	iload 0
 	goto while_1
 	while_1_end:
+	bipush 5
+	istore 1
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 1
+	invokevirtual java/io/PrintStream/println(I)V
 	return
 .end method

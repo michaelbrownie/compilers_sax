@@ -152,16 +152,9 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     }
 
     @Override
-    public Object visitLiteralValueExp(JavaBlyatParser.LiteralValueExpContext ctx) {
-        visitChildren(ctx);
-        return null;
-    }
-
-    @Override
     public Object visitEqualExpressions(JavaBlyatParser.EqualExpressionsContext ctx) {
         visitChildren(ctx.leftExpression);
         visitChildren(ctx.rightExpression);
-        System.out.println("CodeGen.visitEqualExpressions");
         this.expressionHelper(ctx.operator.getText());
         return null;
     }
@@ -186,31 +179,31 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     public void expressionHelper(String expression){
         switch(expression){
             case "!=":
-                printWriter.println("\tif_icmpeq ");
+                printWriter.print("\tif_icmpeq ");
                 break;
             case "==":
-                printWriter.println("\tif_icmpne ");
+                printWriter.print("\tif_icmpne ");
                 break;
             case ">":
-                printWriter.println("\tif_icmple ");
+                printWriter.print("\tif_icmple ");
                 break;
             case "<":
-                printWriter.println("\tif_icmpge ");
+                printWriter.print("\tif_icmpge ");
                 break;
             case "<=":
-                printWriter.println("\tif_icmpgt ");
+                printWriter.print("\tif_icmpgt ");
                 break;
             case ">=":
-                printWriter.println("\tif_icmplt ");
+                printWriter.print("\tif_icmplt ");
                 break;
             case "||":
-                printWriter.println("\tior ");
+                printWriter.print("\tior ");
                 break;
             case "&&":
-                printWriter.println("\tiand ");
+                printWriter.print("\tiand ");
                 break;
             case "!":
-                printWriter.println("\tifnonnull ");
+                printWriter.print("\tifnonnull ");
                 break;
         }
     }
@@ -256,7 +249,7 @@ public class CodeGen extends JavaBlyatBaseVisitor {
                     break;
             }
         }
-        return super.visitPlusplusAndminminExpressions(ctx);
+        return null;
     }
 
     @Override

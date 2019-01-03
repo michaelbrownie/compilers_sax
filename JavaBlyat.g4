@@ -12,8 +12,8 @@ statement: if_statement
          | print;
 
 //IF statement
-if_statement: 'ifblyat' '(' expr=expression ')' statementBlock=statement_block elseif_block* else_block?;
-elseif_block: 'elseifblyat' '(' expr=expression ')' statementBlock=statement_block;
+if_statement: 'ifblyat' expr=expression statementBlock=statement_block elseif_block* else_block?;
+elseif_block: 'elseifblyat' expr=expression statementBlock=statement_block;
 else_block: 'elseblyat' statementBlock=statement_block;
 
 //Variables
@@ -22,7 +22,7 @@ new_variable_declaration: DATATYPES ID SEMICOLON;
 change_variable: id=ID IS expr=calc_expression SEMICOLON;
 
 //While loop
-while_loop: 'whileblyat' '(' expr=expression ')' statementBlock=statement_block;
+while_loop: 'whileblyat' expr=expression statementBlock=statement_block;
 
 //Print
 print: 'cyka.blyat(' ID ')' SEMICOLON #printId
