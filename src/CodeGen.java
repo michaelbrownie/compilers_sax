@@ -119,8 +119,7 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     public Object visitNew_variable(JavaBlyatParser.New_variableContext ctx) {
         Symbol s = (Symbol) variableTree.get(ctx);
         visit(ctx.calc_expression());
-        int pos = s.getPos();
-        this.storeVariable(s.getType(),pos);
+        this.storeVariable(s.getType(),s.getPos());
         return null;
     }
 
@@ -128,8 +127,7 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     public Object visitChange_variable(JavaBlyatParser.Change_variableContext ctx) {
         Symbol s = (Symbol) variableTree.get(ctx);
         visit(ctx.calc_expression());
-        int pos = s.getPos();
-        this.storeVariable(s.getType(),pos);
+        this.storeVariable(s.getType(), s.getPos());
         return super.visitChange_variable(ctx);
     }
 
