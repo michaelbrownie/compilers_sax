@@ -283,7 +283,8 @@ public class CodeGen extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitLiteralId(JavaBlyatParser.LiteralIdContext ctx) {
-        Symbol symbol = scope.searchVariable(ctx.ID().getText());
+        Scope s = (Scope) this.scopeTree.get(ctx);
+        Symbol symbol = s.searchVariable(ctx.ID().getText());
         this.getVariable(symbol.getType(), symbol.getPos());
         return symbol.getType();
     }

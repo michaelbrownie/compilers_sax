@@ -1,6 +1,6 @@
 intblyat henk = 0;
 whileblyat(henk != 5){
-    cyka.blyat("Henk");
+    cyka.blyat(henk);
     henk++;
 }
 
