@@ -56,7 +56,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
             Scope scopeElseIf = this.scope.createChildScope("else_if_" + this.count_else_if_blocks_name);
             this.scope = scopeElseIf;
             this.scope.getParent().addChild(this.scope);
-            this.scopeTree.put(ctx, this.scope);
+            //this.scopeTree.put(ctx, this.scope);
             visit(ctx.elseif_block(i));
             this.scope = this.scope.closeChildScope();
         }
@@ -66,7 +66,7 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
             Scope scopeElse = this.scope.createChildScope("else_" + this.count_else_blocks_name);
             this.scope = scopeElse;
             this.scope.getParent().addChild(this.scope);
-            this.scopeTree.put(ctx, this.scope);
+            //this.scopeTree.put(ctx, this.scope);
             visit(ctx.else_block());
             this.scope = this.scope.closeChildScope();
         }
@@ -87,6 +87,13 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
             return null;
         }
         throw new RuntimeException("One elseifblyat statement in a ifblyat statement on rule: " + ctx.getStart().getLine() + " is not a comparison or a boolean.");
+    }
+
+    @Override
+    public Object visitElse_block(JavaBlyatParser.Else_blockContext ctx) {
+        scopeTree.put(ctx, this.scope);
+        visit(ctx.statement_block());
+        return Type.BOOL;
     }
 
     @Override

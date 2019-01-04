@@ -1,0 +1,10 @@
+intblyat inttest = 5;
+stringblyat stringtest = "stringtest";
+booleanblyat booltest = trueblyat;
+
+cyka.blyat(inttest);
+cyka.blyat(stringtest);
+cyka.blyat(booltest);
+cyka.blyat("Test string");
+cyka.blyat((4 + 4) * (5 * 5));
+

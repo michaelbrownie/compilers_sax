@@ -21,7 +21,10 @@ public class CodeGen extends JavaBlyatBaseVisitor {
 
     private PrintWriter printWriter;
 
-    private Symbol lastCalcSymbol;
+    private String elseState = null;
+    private String headIfTitle = null;
+    private int elseStateCounter = 0;
+    private boolean isElseState = false;
 
     public CodeGen (String fileName, Scope scope, ParseTreeProperty scopeTree, ParseTreeProperty variableTree, ParseTreeProperty valueExpressionTree) throws FileNotFoundException, UnsupportedEncodingException {
         this.fileName = fileName;
@@ -133,7 +136,63 @@ public class CodeGen extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitIf_statement(JavaBlyatParser.If_statementContext ctx) {
+        Scope s = (Scope) scopeTree.get(ctx);
+        printWriter.println("\t" + s.getTitle() + ":");
         visitChildren(ctx.expression());
+        if(ctx.else_block() == null) {
+            printWriter.println(s.getTitle() + "_if_end");
+        } else {
+            isElseState = true;
+            printWriter.println("elsestate_" + elseStateCounter);
+        }
+        visitChildren(ctx.statement_block());
+        printWriter.println("\tgoto " + s.getTitle() + "_if_end");
+        headIfTitle = s.getTitle();
+        if(ctx.else_block() == null) {
+            printWriter.println("\t" + s.getTitle() + "_if_end" + ":");
+        }
+        for (int i = 0; i < ctx.elseif_block().size(); i++) {
+            visit(ctx.elseif_block(i));
+        }
+
+        if(ctx.else_block() != null){
+            elseState = s.getTitle() + "_if_end" + ":";
+            visit(ctx.else_block());
+        }
+        isElseState = false;
+        return null;
+    }
+
+    @Override
+    public Object visitElseif_block(JavaBlyatParser.Elseif_blockContext ctx) {
+        Scope s = (Scope) scopeTree.get(ctx);
+        if(!isElseState) {
+            printWriter.println("\t" + s.getTitle() + ":");
+        } else {
+            printWriter.println("\telsestate_" + elseStateCounter + ":");
+        }
+        visitChildren(ctx.expression());
+        if(!isElseState) {
+            printWriter.println(s.getTitle() + "_if_end");
+        } else {
+            elseStateCounter++;
+            printWriter.println("elsestate_" + elseStateCounter);
+        }
+        visitChildren(ctx.statement_block());
+        if(!isElseState) {
+            printWriter.println("\tgoto " + s.getTitle() + "_if_end");
+            printWriter.println("\t" + s.getTitle() + "_if_end" + ":");
+        } else {
+            printWriter.println("\tgoto " + headIfTitle + "_if_end");
+        }
+        return null;
+    }
+
+    @Override
+    public Object visitElse_block(JavaBlyatParser.Else_blockContext ctx) {
+        printWriter.println("\telsestate_" + elseStateCounter + ":");
+        visitChildren(ctx.statement_block());
+        printWriter.println("\t" + elseState);
         return null;
     }
 

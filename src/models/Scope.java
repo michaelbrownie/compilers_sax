@@ -59,15 +59,15 @@ public class Scope {
     }
 
     public int countLocals(){
-        int localSize = this.variableMap.size();
+        int maxLocal = this.variableMap.size();
         int temp = 0;
-        for(Scope s: this.childList){
-            temp = s.countLocals();
-            if(temp > localSize){
-                localSize = temp;
+        for (Scope scope : this.childList) {
+            temp = scope.countLocals();
+            if (temp > maxLocal) {
+                maxLocal = temp;
             }
         }
-        return localSize;
+        return maxLocal + this.childList.size();
     }
 
     public int countMaxStack() {
@@ -97,6 +97,10 @@ public class Scope {
 
     public void setPosOnSymbol(Symbol symbol) {
         symbol.setPos(this.pos++);
+    }
+
+    public ArrayList<Scope> getChildList() {
+        return childList;
     }
 
     public Scope getParent() {
