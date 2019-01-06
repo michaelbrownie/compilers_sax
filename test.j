@@ -8,21 +8,21 @@
 .end method
 
 .method public static main([Ljava/lang/String;)V
-	.limit stack 3
-	.limit locals 2
+	.limit stack 5
+	.limit locals 3
 
-	bipush 0
+	bipush 1
 	istore 0
-	while_1:
-	iload 0
-	bipush 5
-	if_icmpge while_1_end
+	bipush 3
+	istore 1
+	if_1:
+	iconst_1
+if_1_if_end
 	getstatic java/lang/System/out Ljava/io/PrintStream;
-	ldc "Test"
+	ldc "Test3"
 	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 
-	iinc 0 1
-	goto while_1
-	while_1_end:
+	goto if_1_if_end
+	if_1_if_end:
 	return
 .end method

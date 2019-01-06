@@ -1,0 +1,12 @@
+intblyat test = 1;
+
+whileblyat(test < 4){
+    ifblyat(test == 1){
+        cyka.blyat("Test is 1");
+    } elseifblyat(test == 2){
+        cyka.blyat("Test is 2");
+    } elseblyat{
+         cyka.blyat("Test is anders dan 1 of 2");
+    }
+    test++;
+}

@@ -32,7 +32,7 @@ public class JavaBlyat {
         String fileName = file.substring(0, file.length() - 3);
 
         //CodeGenerator
-        CodeGen codeGen = new CodeGen(fileName, scopeChecker.getScope(), scopeChecker.getScopeTree(), scopeChecker.getVariableTree(), scopeChecker.getValueExpressionTree());
+        CodeGen codeGen = new CodeGen(fileName, scopeChecker.getScope(), scopeChecker.getScopeTree(), scopeChecker.getVariableTree());
         codeGen.visit(tree);
         codeGen.getPrintWriter().flush();
         codeGen.getPrintWriter().close();

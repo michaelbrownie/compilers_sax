@@ -8,7 +8,7 @@
 .end method
 
 .method public static main([Ljava/lang/String;)V
-	.limit stack 21
+	.limit stack 30
 	.limit locals 3
 
 	bipush 5
@@ -39,5 +39,23 @@
 	imul
 	imul
 	invokevirtual java/io/PrintStream/println(I)V
+	bipush 10
+	istore 0
+	bipush 10
+	ldc "nieuwestring"
+	astore 1
+	ldc "nieuwestring"
+	iconst_0
+	istore 2
+	iconst_0
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 0
+	invokevirtual java/io/PrintStream/println(I)V
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 1
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 2
+	invokevirtual java/io/PrintStream/println(Z)V
 	return
 .end method

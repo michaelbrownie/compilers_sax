@@ -1,0 +1,23 @@
+intblyat test = 4;
+
+whileblyat(test < 10){
+    ifblyat(test > 4){
+       cyka.blyat("Test is groter dan 5");
+       intblyat test2 = 10;
+       ifblyat(test2 > 5){
+            cyka.blyat("Test2 is groter dan 5");
+            intblyat test3 = 15;
+            ifblyat(test3 > 5){
+                cyka.blyat("Test3 is groter dan 5");
+            }
+       }
+    } elseblyat {
+        cyka.blyat("Test is kleiner dan 5");
+    }
+    test++;
+}
+
+
+
+
+

@@ -1,0 +1,11 @@
+stringblyat test = "hello";
+
+ifblyat(test == "hello"){
+    cyka.blyat("Hello");
+}
+
+//Expecting to find a integer on the stack
+
+
+
+

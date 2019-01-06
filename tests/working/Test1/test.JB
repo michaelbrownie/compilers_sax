@@ -8,3 +8,10 @@ cyka.blyat(booltest);
 cyka.blyat("Test string");
 cyka.blyat((4 + 4) * (5 * 5));
 
+inttest = 10;
+stringtest = "nieuwestring";
+booltest = falseblyat;
+
+cyka.blyat(inttest);
+cyka.blyat(stringtest);
+cyka.blyat(booltest);

@@ -1,0 +1,7 @@
+cyka.blyat("test" + 1);
+
+//You cant use the operator + with STRING and INT.
+
+
+
+

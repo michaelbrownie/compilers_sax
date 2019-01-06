@@ -1,7 +1,6 @@
 import models.Scope;
 import models.Symbol;
 import models.Type;
-import models.Value;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
 import java.io.FileNotFoundException;
@@ -16,8 +15,6 @@ public class CodeGen extends JavaBlyatBaseVisitor {
 
     private ParseTreeProperty scopeTree;
     private ParseTreeProperty variableTree;
-    private ParseTreeProperty valueExpressionTree;
-    private Value lastvalExpression;
 
     private PrintWriter printWriter;
 
@@ -26,12 +23,11 @@ public class CodeGen extends JavaBlyatBaseVisitor {
     private int elseStateCounter = 0;
     private boolean isElseState = false;
 
-    public CodeGen (String fileName, Scope scope, ParseTreeProperty scopeTree, ParseTreeProperty variableTree, ParseTreeProperty valueExpressionTree) throws FileNotFoundException, UnsupportedEncodingException {
+    public CodeGen (String fileName, Scope scope, ParseTreeProperty scopeTree, ParseTreeProperty variableTree) throws FileNotFoundException, UnsupportedEncodingException {
         this.fileName = fileName;
         this.scope = scope;
         this.scopeTree = scopeTree;
         this.variableTree = variableTree;
-        this.valueExpressionTree = valueExpressionTree;
         this.printWriter = new PrintWriter(fileName + ".j", "UTF-8");
         this.printWriter.println(".class public " + this.fileName + "\n" + // Name and access modifier of the class
                                  ".super java/lang/Object\n" + // ; Inheritance definition
@@ -98,7 +94,6 @@ public class CodeGen extends JavaBlyatBaseVisitor {
 
     @Override
     public Object visitCalcValueExpression(JavaBlyatParser.CalcValueExpressionContext ctx) {
-        this.lastvalExpression = (Value) valueExpressionTree.get(ctx);
         visitChildren(ctx);
         String operator = ctx.operator.getText();
         switch (operator){

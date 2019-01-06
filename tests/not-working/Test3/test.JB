@@ -1,0 +1,11 @@
+stringblyat test = "test";
+
+whileblyat(test){
+    cyka.blyat(test);
+}
+
+//Whileblyat loop does not contain a comparison or a boolean.
+
+
+
+

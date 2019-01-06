@@ -1,0 +1,11 @@
+intblyat test = 4;
+stringblyat test1 = "hello";
+
+test = test1;
+
+
+//Datatypes not matching int with a string
+
+
+
+

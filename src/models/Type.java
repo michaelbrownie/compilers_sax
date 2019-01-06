@@ -8,6 +8,11 @@ public enum Type {
     INVALID,
     ID;
 
+    /**
+     * Gets the type of a datatype in the cykablyat language
+     * @param datatype The cykablyat datatype
+     * @return Java datatype
+     */
     public static Type getType(String datatype) {
         switch (datatype) {
             case "stringblyat":

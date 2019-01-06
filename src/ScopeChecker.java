@@ -1,7 +1,6 @@
 import models.Scope;
 import models.Symbol;
 import models.Type;
-import models.Value;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
 public class ScopeChecker extends JavaBlyatBaseVisitor {
@@ -9,7 +8,6 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
 
     private ParseTreeProperty scopeTree;
     private ParseTreeProperty variableTree;
-    private ParseTreeProperty valueExpressionTree;
 
     private Scope scope;
 
@@ -25,7 +23,6 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     public ScopeChecker() {
         this.scopeTree = new ParseTreeProperty();
         this.variableTree = new ParseTreeProperty();
-        this.valueExpressionTree = new ParseTreeProperty();
         this.scope = new Scope("begin_1");
     }
 
@@ -128,8 +125,6 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         Symbol s = scope.searchVariable(ctx.leftExpression.getText());
         this.variableTree.put(ctx, s);
         if(s != null){
-            Value value = new Value(Type.INT);
-            valueExpressionTree.put(ctx, value);
             scope.increaseStack();
             return Type.INT;
         }
@@ -229,8 +224,6 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
     @Override
     public Object visitCalcValueExpression(JavaBlyatParser.CalcValueExpressionContext ctx) {
         this.scopeTree.put(ctx, scope);
-        Value v = new Value(Type.INT);
-        this.valueExpressionTree.put(ctx, v);
         visitChildren(ctx);
         return Type.INT;
     }
@@ -290,9 +283,6 @@ public class ScopeChecker extends JavaBlyatBaseVisitor {
         return variableTree;
     }
 
-    public ParseTreeProperty getValueExpressionTree() {
-        return valueExpressionTree;
-    }
 
     public Scope getScope() {
         return scope;
