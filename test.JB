@@ -1,11 +1,4 @@
-intblyat test = 1;
-intblyat test2 = 3;
 
-ifblyat("test"){
-    cyka.blyat("Test3");
-}
-
-//The ifblyat statement on rule: 4 is not a comparison or a boolean.
 
 
 

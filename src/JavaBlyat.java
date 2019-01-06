@@ -43,7 +43,6 @@ public class JavaBlyat {
         cmd.add("java");
         cmd.add("-jar");
         cmd.add("jasmin.jar");
-        cmd.add("-g");
         cmd.add(jasminFile);
         ProcessBuilder pb = new ProcessBuilder(cmd);
         pb.start();
